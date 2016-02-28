@@ -1,0 +1,29 @@
+{% extends ':admin:plantilla.html.twig' %}
+
+{% block headTitle %}categorias no utilizadas{% endblock %}
+
+{% block body %}
+    {% if categorias %}
+        <table class="table">
+            <thead>
+            <td><strong>Categoria</strong></td>
+            <td></td>
+            </thead>
+            {% for categoria in categorias %}
+                <tr>
+                    <td class="tag-name">{{ categoria }}</td>
+                    <td><a class="btn btn-danger" href="{{ path('app_admin_categoria_borrar', {'id': categoria.id}) }}">borrar</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div>
+            <a class="btn btn-danger" href="{{ path('app_admin_categoria_borrarTodascategoriasNoUsadas') }}">Borrar todas las categorias no utilizadas</a>
+        </div>
+    {% else %}
+        <div class="row ">
+            <div class="col-md-4 alert-success" style="padding: 10px;">
+                <p id="no-unused-tags-found">No hay categorias no utilizadas</p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

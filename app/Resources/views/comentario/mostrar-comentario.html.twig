@@ -1,0 +1,13 @@
+
+<div class="rounded-box margin-bottom-md">
+    {% if comentario.autor == app.user or is_granted('ROLE_ADMIN') %}
+        <div style="float: right;">
+            <a href="{{ path('app_comentario_editar', {'id': comentario.id}) }}"><img src="{{ asset('icons/glyphicons-151-edit.png') }}" alt="edit comment" /></a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_admin_comentario_borrar', {'id': comentario.id}) }}"><img src="{{ asset('icons/glyphicons-198-remove.png') }}" alt="remove comment" /></a>
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="margin-bottom-sm"><strong>Autor:</strong> <a href="{{ path('app_publicaciones_porUsuario', {'username': comentario.autor.username}) }}">@{{ comentario.autor }}</a> :: <strong>Creado:</strong> {{ comentario.createdAt|date("d/m/Y H:i:s") }} :: <strong>Updated:</strong> {{ comentario.updatedAt|date("d/m/Y H:i:s") }}</div>
+    <div style="font-size: medium">{{ comentario }}</div>
+</div>

@@ -1,0 +1,50 @@
+<div class="rounded-box margin-bottom-lg">
+    <div style="float: right;">
+
+        {% if is_granted('EDIT', publicacion) %}
+            <a href="{{ path('app_publicacion_editar', {'id': publicacion.id}) }}"><img src="{{ asset('icons/glyphicons-151-edit.png') }}" alt="edit article" /></a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_admin_publicacion_borrar', {'id': publicacion.id}) }}"><img src="{{ asset('icons/glyphicons-198-remove.png') }}" alt="remove article" /></a>
+            {% endif %}
+        {% endif %}
+
+    </div>
+    <h1 style="margin-top: 0"><a style="color: inherit; text-decoration: inherit;" href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}">{{ publicacion.id }}</a></h1>
+    <div>
+        <strong>Publicado por:</strong> <a href="{{ path('app_publicaciones_porUsuario', {'username': publicacion.autor.username}) }}">@{{ publicacion.autor }}</a> ::
+        <strong>Creada:</strong> {{ publicacion.createdAt|date("d/m/Y H:i:s") }} ::
+        <strong>Modificada:</strong> {{ publicacion.updatedAt|date("d/m/Y H:i:s") }}
+
+    </div>
+    <br>
+
+
+        <div id="article-content" style="margin-bottom:20px;padding: 0 20px;font-size: medium">
+            <p><a class="enlaceSinColor" style="text-decoration: none;" href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}">{{ publicacion.contenido }}</a></p>
+        </div>
+
+    <div style="border-top:1px solid #DDD; padding-top: 10px;">
+        <div style="margin: 10px 0;float: left">
+            {% for categoria in publicacion.categorias %}
+                <a class="btn btn-default" href="{{ path('app_publicaciones_porCategoria', {'nombre': categoria.nombre}) }}">{{ categoria }}</a>
+            {% endfor %}
+        </div>
+        <div style="margin: 10px 0;float: right">
+            {{ publicacion.comentarios.count }} <a href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}"><img src="{{ asset('icons/glyphicons-310-comments.png') }}" /></a>
+            {% if show_content is not defined and publicacion.comentarios.count > 0 %}
+                <a href="{{ path('app_publicaciones_porUsuario', {'username': publicacion.comentarios.last.autor}) }}">@{{ publicacion.comentarios.last.autor }}</a> {{ publicacion.comentarios.last.createdAt|time_diff }}
+            {% endif %}
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</div>
+
+{% if show_content is defined %}
+    {{ render(controller('AppBundle:Comentario:MostrarFormulario', {'id': publicacion.id})) }}
+    {{ render(controller('AppBundle:Comentario:comentariosDeLasPublicaciones', {'id': publicacion.id})) }}
+
+{% endif %}
+
+{% if comments is defined %}
+    {% include ':comentario:mostrar-comentarios-por-publicacion.html.twig' with {'comentarios': comentarios} %}
+{% endif %}

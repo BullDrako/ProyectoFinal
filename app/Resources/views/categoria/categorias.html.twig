@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block headTitle %}Categorias{% endblock %}
+
+{% block body %}
+    {% for categoria in categorias %}
+        <h1>{{ categoria.nombre }}</h1>
+        <p>Publicaciones en las que aparece la categoria {{ categoria.nombre }}</p>
+        <div style="padding: 5px 20px">
+            {% for publicacion in categoria.publicaciones %}
+                <div><a href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}">{{ publicacion }}</a></div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <div class="navigation">
+        {{ knp_pagination_render(categorias) }}
+    </div>
+{% endblock %}

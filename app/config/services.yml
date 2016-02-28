@@ -1,0 +1,12 @@
+services:
+    twig.extension.date:
+        class: Twig_Extensions_Extension_Date
+        tags:
+            - { name: twig.extension }
+
+    app.publicacion_voter:
+                class: AppBundle\Security\PublicacionVoter
+                arguments: ['@security.access.decision_manager']
+                tags:
+                     - { name: security.voter }
+                public: false

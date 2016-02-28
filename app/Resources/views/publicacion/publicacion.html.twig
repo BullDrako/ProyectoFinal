@@ -1,0 +1,8 @@
+
+{% extends '::base.html.twig' %}
+
+{% block headTitle %}Mostrar Publicacion{% endblock %}
+
+{% block body %}
+    {% include ':publicacion:publicacion_contenido.html.twig' with {'show_content': true, 'comentarios': comentarios} %}
+{% endblock %}
