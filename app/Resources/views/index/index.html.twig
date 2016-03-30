@@ -14,8 +14,33 @@
             </div>
 
         {% else %}
-            <span>Estás como usuario anónimo</span> | <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> - <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+            <span>Estás como usuario Anónimo</span> | <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> - <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
         {% endif %}
 
     </div>
+
+
+    <div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div>
+            <span><a href="/admin">Ir al panel del administrador</a></span>
+        </div>
+
+
+    {% endif %}
+    </div>
+
+    <br>
+    <div>
+        {% for publicacion in publicaciones %}
+            {% include ':publicacion:publicacion_contenido.html.twig' %}
+        {% endfor %}
+        {% if not doPagination is defined %}
+            <div class="navigation">
+                {{ knp_pagination_render(publicaciones) }}
+            </div>
+        {% endif %}
+    </div>
+
+
 {% endblock %}

@@ -6,5 +6,5 @@ fos_user:
         confirmation:
             enabled: true
     from_email:
-        address:        youremailaccount@gmail.com
-        sender_name:    YourSenderName
+        address:        pruebassymfony@gmail.com
+        sender_name:    prueba

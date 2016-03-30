@@ -20,7 +20,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use Symfony\Component\HttpFoundation\Request;
 use Edgar\UserBundle\Entity\User;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 
 class PublicacionController extends Controller
@@ -170,5 +169,7 @@ class PublicacionController extends Controller
             'title'     => '@' . $user->getUsername(),
         ]);
     }
+
+
 
 }

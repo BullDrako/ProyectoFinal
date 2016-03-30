@@ -2,16 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: edgar
- * Date: 10/02/16
- * Time: 15:54
+ * Date: 16/03/16
+ * Time: 15:52
  */
 
 namespace AppBundle\Controller\Admin;
-
 use AppBundle\Entity\Comentario;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 
 class ComentarioController extends Controller
 {
@@ -26,3 +24,6 @@ class ComentarioController extends Controller
         return $this->redirectToRoute('app_publicacion_mostrar', ['id' => $comentario->getPublicacion()->getId()]);
     }
 }
+
+
+

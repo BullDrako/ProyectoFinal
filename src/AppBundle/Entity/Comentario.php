@@ -189,7 +189,7 @@ class Comentario
 
     public function getPublicacion()
     {
-        return $this-publicacion;
+        return $this->publicacion;
     }
 
     public function __toString()

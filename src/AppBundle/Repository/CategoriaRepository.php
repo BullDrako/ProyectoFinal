@@ -5,6 +5,8 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Publicacion;
 use AppBundle\Entity\Categoria;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
 /**
  * CategoriaRepository
  *
@@ -17,14 +19,52 @@ class CategoriaRepository extends \Doctrine\ORM\EntityRepository
     {
         $categoriasPresentadas = $publicacion->getNuevasCategorias();
         preg_replace('/\s+/', ' ', $categoriasPresentadas);
-        $categoriasA = explode(';', $categoriasPresentadas);
-        foreach($categoriasA as $textoCategoria) {
-            if ($textoCategoria) {
+        $categoriasV = explode(';', $categoriasPresentadas);
+        foreach($categoriasV as $nombCategoria) {
+            if ($nombCategoria) {
                // $categoria = $this->findOneByName($textoCategoria);
-                $categoria = $this->findOneByNombre($textoCategoria);
+                $categoria = $this->findOneByNombre($nombCategoria);
                 if (!$categoria) {
                     $nuevaCategoria = new Categoria();
-                    $nuevaCategoria->setNombre($textoCategoria);
+                    $nuevaCategoria->setNombre($nombCategoria);
+                    $publicacion->añadirCategoria($nuevaCategoria);
+                } else {
+                    $publicacion->añadirCategoria($categoria);
+                }
+            }
+        }
+    }
+
+
+
+    public function añadirCategoriasSiSonNuevasAdmin(Publicacion $publicacion)
+    {
+        /*$categoriasPresentadas = $categorias->getNuevasCategorias();
+        preg_replace('/\s+/', ' ', $categoriasPresentadas);
+        $categoriasV = explode(';', $categoriasPresentadas);
+        foreach($categoriasV as $nombCategoria) {
+            if ($nombCategoria) {
+                // $categoria = $this->findOneByName($textoCategoria);
+                $categoria = $this->findOneByNombre($nombCategoria);
+                if (!$categoria) {
+                    $nuevaCategoria = new Categoria();
+                    $nuevaCategoria->setNombre($nombCategoria);
+                    $categorias->añadirCategoria($nuevaCategoria);
+                } else {
+                    $categorias->añadirCategoria($categoria);
+                }
+            }
+        }*/
+        $categoriasPresentadas = $publicacion->getNuevasCategorias();
+        preg_replace('/\s+/', ' ', $categoriasPresentadas);
+        $categoriasV = explode(';', $categoriasPresentadas);
+        foreach($categoriasV as $nombCategoria) {
+            if ($nombCategoria) {
+                // $categoria = $this->findOneByName($textoCategoria);
+                $categoria = $this->findOneByNombre($nombCategoria);
+                if (!$categoria) {
+                    $nuevaCategoria = new Categoria();
+                    $nuevaCategoria->setNombre($nombCategoria);
                     $publicacion->añadirCategoria($nuevaCategoria);
                 } else {
                     $publicacion->añadirCategoria($categoria);
@@ -81,9 +121,10 @@ class CategoriaRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('categoria')
             ->leftJoin('categoria.publicaciones', 'publicaciones')
-            ->andWhere('categoria.publicaciones está vacío')
+            ->andWhere('categoria.publicaciones is EMPTY')
             ->getQuery()
             ->execute()
             ;
     }
+
 }

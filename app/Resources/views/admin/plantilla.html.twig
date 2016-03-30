@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Panel del administrador</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -38,15 +38,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Dashboard</a>
+            <a class="navbar-brand" href="#">Panel</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ path('app_publicacion_publicaciones') }}">Home</a></li>
+                <li><a href="/">Inicio</a></li>
 
             </ul>
             <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
+                <input type="text" class="form-control" placeholder="Buscar...">
             </form>
         </div>
     </div>
@@ -56,24 +56,23 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="#">Publicaciones</a></li>
-                <li><a href="#">Nuevas publicaciones</a></li>
-                <li><a href="#">Actualizar publicación</a></li>
-                <li><a href="#">Borrar publicación</a></li>
+                <li>
+                <a href="{{ path('app_publicacion_publicaciones') }}">Publicaciones</a></li>
+                {#<a href="{{ path('app_publicaciones_porCategoria') }}">Publicaciones por categoria</a></li>#}
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a href="">Cetegorias</a></li>
-                <li><a href="">Nueva Categoria</a></li>
-                <li><a href="">Actualizar Categoria</a></li>
-                <li><a href="">Borrar Categoria</a></li>
+
+               <li><a href="{{ path('app_admin_categorias') }}">Categorias</a></li>
+                <li><a href="{{ path('app_admin_crear_categoria') }}">Nueva Categoria</a></li>
                 <li {% if app.request.get('_route') == 'app_admin_categoria_no_usada' %}class="active"{% endif %}>
-                    <a href="{{ path('app_admin_categoria_no_usada') }}">Unused tags</a>
+                    <a href="{{ path('app_admin_categoria_no_usada') }}">Categorias no usadas</a>
                 </li>
                 <li {% if app.request.get('_route') == 'app_admin_categoria_borrarTodascategoriasNoUsadas' %}class="active"{% endif %}>
                     <a href="{{ path('app_admin_categoria_borrarTodascategoriasNoUsadas') }}">Borrar todas las categorias no utilizadas</a>
                 </li>
             </ul>
-            <ul class="nav nav-sidebar">
+
+           {# <ul class="nav nav-sidebar">
                 <li><a href="#">Comentarios</a></li>
                 <li><a href="#">Nuevo comentario</a></li>
                 <li><a href="#">Actualizar comentario</a></li>
@@ -84,7 +83,7 @@
                 <li><a href="">Nuevo Usuario</a></li>
                 <li><a href="">Actualizar usuario</a></li>
                 <li><a href="">Borrar usuario</a></li>
-            </ul>
+            </ul>#}
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">{% block headTitle %}{% endblock %}</h1>

@@ -83,6 +83,7 @@ class Publicacion
     private $image;
 
 
+
     public function __construct()
     {
         $this->categorias   = new ArrayCollection();
@@ -339,6 +340,9 @@ class Publicacion
     {
         return $this->image;
     }
+
+
+
 
 }
 

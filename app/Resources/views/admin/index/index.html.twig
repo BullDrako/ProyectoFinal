@@ -1,9 +1,18 @@
 {% extends ':admin:plantilla.html.twig' %}
 
-{% block headTitle %}Dashboard{% endblock %}
+{% block headTitle %}Panel del administrador{% endblock %}
 
 {% block body %}
     <div>
-        <p>Welcome to dashboard</p>
+        <p>Publicaciones de los usuarios</p>
     </div>
+
+    {% for publicacion in publicaciones %}
+        {% include ':publicacion:publicacion_contenido.html.twig' %}
+    {% endfor %}
+    {% if not doPagination is defined %}
+        <div class="navigation">
+            {{ knp_pagination_render(publicaciones) }}
+        </div>
+    {% endif %}
 {% endblock %}

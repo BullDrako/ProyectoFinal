@@ -1,20 +1,33 @@
-{% extends '::base.html.twig' %}
+{% extends ':admin:plantilla.html.twig' %}
 
 {% block headTitle %}Categorias{% endblock %}
 
 {% block body %}
-    <h1>Categorias</h1>
-    <hr>
     {% for categoria in categorias %}
         <h3>{{ categoria.nombre }}</h3>
         <p>Publicaciones en las que aparece la categoria {{ categoria.nombre }}</p>
+
+
+        <a href="{{ path('app_admin_categoria1_borrar', {'id': categoria.id}) }}"><img src="{{ asset('icons/glyphicons-198-remove.png') }}" alt="remove comment" /></a>
+
+
+
         <div style="padding: 5px 20px">
             {% for publicacion in categoria.publicaciones %}
                 <div><a href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}">{{ publicacion }}</a></div>
+
+
             {% endfor %}
+
         </div>
     {% endfor %}
-    <div class="navigation">
+
+        <div class="navigation">
         {{ knp_pagination_render(categorias) }}
     </div>
 {% endblock %}
+
+
+
+
+

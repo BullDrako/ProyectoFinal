@@ -3,8 +3,10 @@
 namespace Edgar\UserBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Request;
+
+use Symfony\Component\HttpFoundation\Request;
 
 class HoritzontalLoginController extends Controller
 {
@@ -20,4 +22,7 @@ class HoritzontalLoginController extends Controller
             'route'         => $route,
         ]);
     }
+
+
+
 }

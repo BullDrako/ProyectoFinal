@@ -33,14 +33,12 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
     {
         $query = $this->createQueryBuilder('p')
             ->leftJoin('p.categorias', 'categorias')
-            //->addSelect('tags')
             ->addOrderBy('p.createdAt', 'DESC')
             ->andWhere('categorias.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
         ;
-        //var_dump($query->getDQL());die;
-        //var_dump($query->getSQL());die;
+
         return $query;
     }
 
@@ -83,4 +81,6 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->buscarPublicacionesPorUsuarioId($id)->execute();
     }
+
+
 }

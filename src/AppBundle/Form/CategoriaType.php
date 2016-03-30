@@ -7,15 +7,15 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class PublicacionType extends AbstractType
+
+class CategoriaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('contenido')
-            ->add('categorias', null, ['expanded' => true])
-            ->add('nuevasCategorias')
-            ->add('image', ImageType::class)
+           /* ->add('categorias', null, ['expanded' => true])
+            ->add('nuevasCategorias')*/
+               ->add('nombre')
             ->add('submit', SubmitType::class, [
                 'label' => $options['submit_label'],
             ])
@@ -25,13 +25,13 @@ class PublicacionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'    => 'AppBundle\Entity\Publicacion',
-            'submit_label'  => 'Nueva Publicacion',
+            'data_class'    => 'AppBundle\Entity\Categoria',
+            'submit_label'  => 'Nueva Categoria',
         ]);
     }
 
     public function getName()
     {
-        return 'app_bundle_publicacion_type';
+        return 'app_bundle_categoria_type';
     }
 }

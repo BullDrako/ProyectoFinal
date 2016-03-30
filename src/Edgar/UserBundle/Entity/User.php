@@ -23,6 +23,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
+
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id()

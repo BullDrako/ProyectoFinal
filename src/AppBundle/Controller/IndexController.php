@@ -3,19 +3,42 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Image;
+use AppBundle\Entity\Publicacion;
 use AppBundle\Form\ImageType;
+use Edgar\UserBundle\Entity\User;
+use Edgar\UserBundle\UserBundle;
+use FOS\UserBundle\FOSUserBundle;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+
 
 class IndexController extends Controller
 {
     /**
      * @Route("/", name="app_index_index")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render(':index:index.html.twig');
+        $m = $this->getDoctrine()->getManager();
+        $publicacionRepositorio= $m->getRepository('AppBundle:Publicacion');
+
+        $query = $publicacionRepositorio->buscarTodasLasPublicaciones();
+        $paginator = $this->get('knp_paginator');
+
+        $publicaciones =$paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            Publicacion::PAGINATION_ITEMS,
+            [
+                'wrap-queries' => true,
+            ]
+        );
+
+        return $this->render(':index:index.html.twig', [
+            'publicaciones'  => $publicaciones,
+            'title'          =>'Publicaciones']);
+
     }
 
     /**
@@ -41,5 +64,17 @@ class IndexController extends Controller
         return $this->render(':index:upload.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+
+
+    /**
+     * @Route(path="/kk", name="app_admin_usuarios1")
+     */
+    public function usuariosAction(User $user)
+    {
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user' => $user
+        ));
     }
 }

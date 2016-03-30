@@ -24,4 +24,6 @@ class PublicacionController extends Controller
         $m->flush();
         return $this->redirectToRoute('app_publicacion_publicaciones');
     }
+
+
 }

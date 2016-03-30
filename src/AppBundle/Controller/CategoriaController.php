@@ -30,3 +30,5 @@ class CategoriaController extends Controller
         ]);
     }
 }
+
+

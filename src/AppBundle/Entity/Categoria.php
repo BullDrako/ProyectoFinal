@@ -38,10 +38,14 @@ class Categoria
 
     private $publicaciones;
 
+    private $nuevasCategorias;
+
+
 
     public function __construct()
     {
         $this->publicaciones = new ArrayCollection();
+
     }
 
 
@@ -117,5 +121,45 @@ class Categoria
     {
         return $this->nombre;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+
+    /**
+     * @param mixed $autor
+     * @return $this
+     */
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+
+    public function getNuevasCategorias()
+    {
+        return $this->nuevasCategorias;
+    }
+
+    /**
+     * @param $nuevasCategorias
+     * @return $this
+     */
+    public function setNuevasCategorias($nuevasCategorias)
+    {
+        $this->nuevasCategorias = $nuevasCategorias;
+
+        return $this;
+    }
+
 }
 
