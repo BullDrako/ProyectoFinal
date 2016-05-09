@@ -29,17 +29,22 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
         return $this->buscarTodasLasPublicaciones()->execute();
     }
 
-    public function buscarPublicacionesPorCategoriaId($id)
-    {
+    public function buscarPublicacionesQueTieneCategoriaId($nombre)
+    {//buscarPublicacionesQueTienenCategoriaId
         $query = $this->createQueryBuilder('p')
             ->leftJoin('p.categorias', 'categorias')
             ->addOrderBy('p.createdAt', 'DESC')
             ->andWhere('categorias.id = :id')
-            ->setParameter('id', $id)
+            ->setParameter('id', $nombre)
             ->getQuery()
         ;
 
         return $query;
+    }
+
+    public function PublicacionesQueTieneCategoriaId($nombre)
+    {
+        return $this->buscarPublicacionesQueTieneCategoriaId($nombre)->execute();
     }
 
 
@@ -58,13 +63,9 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
         //var_dump($query->getDQL());die;
         return $query;
     }
+    
 
-    public function publicacionesPorCategoriaId($id)
-    {
-        return $this->buscarPublicacionesPorCategoriaId($id)->execute();
-    }
-
-    public function buscarPublicacionesPorUsuarioId($id)
+    public function buscarPublicacionesDeUnUsuarioId($id)
     {
         $qb = $this->createQueryBuilder('p')
             ->leftJoin('p.autor', 'autor')
@@ -77,9 +78,9 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
-    public function publicacionesPorUsuarioId($id)
+    public function publicacionesDeUnrUsuarioId($id)
     {
-        return $this->buscarPublicacionesPorUsuarioId($id)->execute();
+        return $this->buscarPublicacionesDeUnUsuarioId($id)->execute();
     }
 
 

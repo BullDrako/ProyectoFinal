@@ -340,9 +340,4 @@ class Publicacion
     {
         return $this->image;
     }
-
-
-
-
 }
-

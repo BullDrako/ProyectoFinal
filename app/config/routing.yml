@@ -38,3 +38,7 @@ app.comentarios:
     resource: "@AppBundle/Controller/ComentarioController.php"
     type: annotation
     prefix: /comentarios
+
+app.logros:
+    resource: "@AppBundle/Controller/LogroController.php"
+    type: annotation

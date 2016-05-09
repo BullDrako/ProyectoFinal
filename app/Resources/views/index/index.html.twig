@@ -10,6 +10,10 @@
                 <ul>
                     <li><a href="{{ path('app_publicacion_publicaciones') }}">Publicaciones</a> - <a href="{{ path('app_publicacion_nueva') }}">Nueva publicación</a></li>
                     <li><a href="{{ path('app_categorias_categorias') }}">Categorias</a></li>
+                    {#<li><a href="{{ path('app_logros_usuario_id', {'id': user.id}) }}">Mis logros</a></li>#}
+
+
+
                 </ul>
             </div>
 
@@ -23,7 +27,7 @@
     <div>
     {% if is_granted('ROLE_ADMIN') %}
         <div>
-            <span><a href="/admin">Ir al panel del administrador</a></span>
+            <span><a href="{{ path('app_admin_index_index') }}">Ir al panel del administrador</a></span>
         </div>
 
 

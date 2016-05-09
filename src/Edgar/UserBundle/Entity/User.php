@@ -57,6 +57,16 @@ class User extends BaseUser
      */
     private $comentarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Logro", mappedBy="usuario", cascade={"remove"})
+     */
+
+    private $logros;
+
+    /**
+     * User constructor.
+     */
+
     public function __construct()
     {
         parent::__construct();
@@ -65,6 +75,7 @@ class User extends BaseUser
         $this->updatedAt    = $this->createdAt;
         $this->publicaciones     = new ArrayCollection();
         $this->comentarios    = new ArrayCollection();
+        $this->logros    = new ArrayCollection();
     }
 
     public function setCreatedAt()
@@ -128,4 +139,6 @@ class User extends BaseUser
         $this->publicaciones = $publicaciones;
         return $this;
     }
+    
+    
 }

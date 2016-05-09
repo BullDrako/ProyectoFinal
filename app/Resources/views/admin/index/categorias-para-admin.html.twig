@@ -4,7 +4,8 @@
 
 {% block body %}
     {% for categoria in categorias %}
-        <h3>{{ categoria.nombre }}</h3>
+        {#<h3>{{ categoria.nombre }}</h3>#}
+        <h3><a href="{{ path('app_publicacionesQueTieneCategoria', {'nombre': categoria.nombre}) }}">{{ categoria.nombre }}</a></h3>
         <p>Publicaciones en las que aparece la categoria {{ categoria.nombre }}</p>
 
 

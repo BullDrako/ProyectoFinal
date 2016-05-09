@@ -197,4 +197,3 @@ class Comentario
         return $this->getComentario();
     }
 }
-

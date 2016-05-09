@@ -53,7 +53,7 @@ class PublicacionController extends Controller
 
         $response = $this->render(':publicacion:publicaciones.html.twig', [
             'publicaciones'  => $publicaciones,
-            'title'          =>'Publicaciones'
+            'titulo'          =>'Publicaciones'
 
         ]);
 
@@ -84,7 +84,7 @@ class PublicacionController extends Controller
         }
         return $this->render(':publicacion:form.html.twig', [
             'form'  => $form->createView(),
-            'title' => 'Nueva Publicacion',
+            'titulo' => 'Nueva Publicacion',
         ]);
     }
 
@@ -117,7 +117,7 @@ class PublicacionController extends Controller
         }
         return $this->render(':publicacion:form.html.twig', [
             'form'  => $form->createView(),
-            'title' => 'Editar Publicacion',
+            'titulo' => 'Editar Publicacion',
         ]);
     }
 
@@ -138,35 +138,35 @@ class PublicacionController extends Controller
     }
 
     /**
-     * @Route("/publicaciones/categoria/{nombre}", name="app_publicaciones_porCategoria")
+     * @Route("/publicaciones/categoria/{nombre}", name="app_publicacionesQueTieneCategoria")
      */
 
-    public function publicacionesPorCategoriaAction(Categoria $categoria, Request $request)
+    public function publicacionesQueTieneCategoriaAction(Categoria $categoria, Request $request)
     {
         $m = $this->getDoctrine()->getManager();
         $publicacionRepositorio = $m->getRepository('AppBundle:Publicacion');
-        $query = $publicacionRepositorio->buscarPublicacionesPorCategoriaId($categoria->getId());
+        $query = $publicacionRepositorio->buscarPublicacionesQueTieneCategoriaId($categoria->getId());
         $paginator = $this->get('knp_paginator');
         $publicaciones = $paginator->paginate($query, $request->query->getInt('page', 1), Publicacion::PAGINATION_ITEMS);
         return $this->render(':publicacion:publicaciones.html.twig', [
             'publicaciones'  => $publicaciones,
-            'title'     => '#' . $categoria->getNombre(),
+            'titulo'     => '#' . $categoria->getNombre(),
         ]);
     }
 
     /**
-     * @Route("/publicaciones/usuario/{username}", name="app_publicaciones_porUsuario")
+     * @Route("/publicaciones/usuario/{username}", name="app_publicaciones_de_un_Usuario")
      */
-    public function publicacionesPorUsuarioAction(User $user, Request $request)
+    public function publicacionesDeUnUsuarioAction(User $user, Request $request)
     {
         $m = $this->getDoctrine()->getManager();
         $publicacionRepoitorio = $m->getRepository('AppBundle:Publicacion');
-        $query = $publicacionRepoitorio->buscarPublicacionesPorUsuarioId($user->getId());
+        $query = $publicacionRepoitorio->buscarPublicacionesDeUnUsuarioId($user->getId());
         $paginator = $this->get('knp_paginator');
         $publicaciones = $paginator->paginate($query, $request->query->getInt('page', 1), Publicacion::PAGINATION_ITEMS);
         return $this->render(':publicacion:publicaciones.html.twig', [
             'publicaciones'  => $publicaciones,
-            'title'     => '@' . $user->getUsername(),
+            'titulo'     => '@' . $user->getUsername(),
         ]);
     }
 

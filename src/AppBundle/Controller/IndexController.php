@@ -37,7 +37,7 @@ class IndexController extends Controller
 
         return $this->render(':index:index.html.twig', [
             'publicaciones'  => $publicaciones,
-            'title'          =>'Publicaciones']);
+            'titulo'          =>'Publicaciones']);
 
     }
 
@@ -71,10 +71,8 @@ class IndexController extends Controller
     /**
      * @Route(path="/kk", name="app_admin_usuarios1")
      */
-    public function usuariosAction(User $user)
+    public function usuariosAction()
     {
-        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
-            'user' => $user
-        ));
+        return $this->render(':index:index2.html.twig');
     }
 }

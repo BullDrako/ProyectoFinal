@@ -2,16 +2,16 @@
     <div style="float: right;">
 
         {% if is_granted('EDIT', publicacion) %}
-            <a href="{{ path('app_publicacion_editar', {'id': publicacion.id}) }}"><img src="{{ asset('icons/glyphicons-151-edit.png') }}" alt="edit article" /></a>
+            <a href="{{ path('app_publicacion_editar', {'id': publicacion.id}) }}"><img src="{{ asset('icons/glyphicons-151-edit.png') }}" alt="editar-publicacion" /></a>
             {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('app_admin_publicacion_borrar', {'id': publicacion.id}) }}"><img src="{{ asset('icons/glyphicons-198-remove.png') }}" alt="remove article" /></a>
+                <a href="{{ path('app_admin_publicacion_borrar', {'id': publicacion.id}) }}"><img src="{{ asset('icons/glyphicons-198-remove.png') }}" alt="borrar-publicacion" /></a>
             {% endif %}
         {% endif %}
 
     </div>
     <h1 style="margin-top: 0"><a style="color: inherit; text-decoration: inherit;" href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}">{{ publicacion.id }}</a></h1>
     <div>
-        <strong>Publicado por:</strong> <a href="{{ path('app_publicaciones_porUsuario', {'username': publicacion.autor.username}) }}">@{{ publicacion.autor }}</a> ::
+        <strong>Publicado por:</strong> <a href="{{ path('app_publicaciones_de_un_Usuario', {'username': publicacion.autor.username}) }}">@{{ publicacion.autor }}</a> ::
         <strong>Creada:</strong> {{ publicacion.createdAt|date("d/m/Y H:i:s") }} ::
         <strong>Modificada:</strong> {{ publicacion.updatedAt|date("d/m/Y H:i:s") }}
 
@@ -26,13 +26,13 @@
     <div style="border-top:1px solid #DDD; padding-top: 10px;">
         <div style="margin: 10px 0;float: left">
             {% for categoria in publicacion.categorias %}
-                <a class="btn btn-default" href="{{ path('app_publicaciones_porCategoria', {'nombre': categoria.nombre}) }}">{{ categoria }}</a>
+                <a class="btn btn-default" href="{{ path('app_publicacionesQueTieneCategoria', {'nombre': categoria.nombre}) }}">{{ categoria }}</a>
             {% endfor %}
         </div>
         <div style="margin: 10px 0;float: right">
             {{ publicacion.comentarios.count }} <a href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}"><img src="{{ asset('icons/glyphicons-310-comments.png') }}" /></a>
             {% if show_content is not defined and publicacion.comentarios.count > 0 %}
-                <a href="{{ path('app_publicaciones_porUsuario', {'username': publicacion.comentarios.last.autor}) }}">@{{ publicacion.comentarios.last.autor }}</a> {{ publicacion.comentarios.last.createdAt|time_diff }}
+                <a href="{{ path('app_publicaciones_de_un_Usuario', {'username': publicacion.comentarios.last.autor}) }}">@{{ publicacion.comentarios.last.autor }}</a> {{ publicacion.comentarios.last.createdAt|time_diff }}
             {% endif %}
         </div>
 
