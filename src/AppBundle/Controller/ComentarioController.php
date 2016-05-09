@@ -79,13 +79,29 @@ class ComentarioController extends Controller
     }
 
 
+    /**
+     * @Route("/ultimosComentarios", name="app_ultimos_comentarios")
+     */
     public function ultimosComentariosAction()
     {
         $m = $this->getDoctrine()->getManager();
         $comentarioRepositorio = $m->getRepository('AppBundle:Comentario');
         $comentarios = $comentarioRepositorio->ultimosComentarios();
-        return $this->render(':comentario:ultimos-comentarios.html.twig', ['comentarios' => $comentarios]);
+        return $this->render(':comentario:ultimos-comentarios-sin-fecha.html.twig', ['comentarios' => $comentarios]);
     }
+
+
+    /**
+     * @Route("/todosComentarios", name="app_todos_comentarios")
+     */
+    public function todosComentariosAction()
+    {
+        $m = $this->getDoctrine()->getManager();
+        $comentarioRepositorio = $m->getRepository('AppBundle:Comentario');
+        $comentarios = $comentarioRepositorio->todosComentarios();
+        return $this->render(':comentario:ultimos-comentarios-sin-fecha.html.twig', ['comentarios' => $comentarios]);
+    }
+    
 
     public function comentariosDeLasPublicacionesAction($id)
     {

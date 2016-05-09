@@ -30,7 +30,7 @@ class CategoriaType2 extends AbstractType
     {
         $resolver->setDefaults([
             'data_class'    => 'AppBundle\Entity\Publicacion',
-            'submit_label'  => 'Nueva Publicacion',
+            'submit_label'  => 'Nueva Categoria',
         ]);
     }
 

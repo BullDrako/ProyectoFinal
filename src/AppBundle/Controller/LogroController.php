@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Logro;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Edgar\UserBundle\Entity\User;
 
 class LogroController extends Controller
 {
@@ -27,7 +28,7 @@ class LogroController extends Controller
         $m = $this->getDoctrine()->getManager();
         $logroRepositorio= $m->getRepository('AppBundle:Logro');
 
-        $query = $logroRepositorio->buscarLogrosPorUsuario($id);
+        $query = $logroRepositorio->buscarLogrosDeUnUsuario($id);
 
         $paginator = $this->get('knp_paginator');
 

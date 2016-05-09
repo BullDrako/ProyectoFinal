@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class LogroRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function buscarLogrosPorUsuario($id)
+    public function buscarLogrosDeUnUsuario($id)
     {
         return $this->createQueryBuilder('logro')
             //->select('logro.nombre', 'logro.descripcion', 'logro.createdAt')
@@ -24,8 +24,8 @@ class LogroRepository extends \Doctrine\ORM\EntityRepository
             ;
     }
 
-    public function LogrosPorUsuario($id)
+    public function LogrosDeUnUsuario($id)
     {
-        return $this->buscarLogrosPorUsuario($id)->execute();
+        return $this->buscarLogrosDeUnUsuario($id)->execute();
     }
 }

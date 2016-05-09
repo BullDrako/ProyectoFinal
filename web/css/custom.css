@@ -19,3 +19,9 @@
 .margin-bottom-lg {
     margin-bottom: 30px;
 }
+
+.comentarios-sidebar{
+    overflow: hidden; /*corta lo que se pasa de la caja*/
+    white-space: nowrap; /*comentario en una sola línea*/
+    text-overflow: ellipsis; /*pone 3 puntos*/
+}

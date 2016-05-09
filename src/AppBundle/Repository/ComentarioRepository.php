@@ -49,4 +49,12 @@ class ComentarioRepository extends EntityRepository
             ->execute()
             ;
     }
+    
+    public function todosComentarios(){
+        return $this->createQueryBuilder('c')
+            ->addOrderBy('c.createdAt', 'DESC')
+            ->getQuery()
+            ->execute()
+            ;
+    }
 }

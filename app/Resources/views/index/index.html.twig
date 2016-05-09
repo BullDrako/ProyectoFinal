@@ -10,10 +10,7 @@
                 <ul>
                     <li><a href="{{ path('app_publicacion_publicaciones') }}">Publicaciones</a> - <a href="{{ path('app_publicacion_nueva') }}">Nueva publicación</a></li>
                     <li><a href="{{ path('app_categorias_categorias') }}">Categorias</a></li>
-                    {#<li><a href="{{ path('app_logros_usuario_id', {'id': user.id}) }}">Mis logros</a></li>#}
-
-
-
+                   <li><a href="{{ path('app_logros_usuario_id', {'id': app.user.id}) }}">Mis logros</a></li>
                 </ul>
             </div>
 
