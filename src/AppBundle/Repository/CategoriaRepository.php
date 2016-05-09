@@ -100,7 +100,7 @@ class CategoriaRepository extends \Doctrine\ORM\EntityRepository
             ;
     }
 
-    public function buscarPublicacionesPorcategoriaId2($id)
+   /** public function buscarPublicacionesPorcategoriaId2($id)
     {
         $em = $this->getEntityManager();
 
@@ -115,7 +115,7 @@ class CategoriaRepository extends \Doctrine\ORM\EntityRepository
         ;
 
         return $query;
-    }
+    }*/
 
     public function getCategoriasNoUsadas()
     {
