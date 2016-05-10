@@ -23,6 +23,17 @@ class ComentarioController extends Controller
         $m->flush();
         return $this->redirectToRoute('app_publicacion_mostrar', ['id' => $comentario->getPublicacion()->getId()]);
     }
+
+    /**
+     * @Route("/todosComentarios", name="app_admin_todos_comentarios")
+     */
+    public function todosComentariosAction()
+    {
+        $m = $this->getDoctrine()->getManager();
+        $comentarioRepositorio = $m->getRepository('AppBundle:Comentario');
+        $comentarios = $comentarioRepositorio->todosComentarios();
+        return $this->render(':admin/comentario:admin-todos-comentarios.html.twig', ['comentarios' => $comentarios]);
+    }
 }
 
 

@@ -91,16 +91,7 @@ class ComentarioController extends Controller
     }
 
 
-    /**
-     * @Route("/todosComentarios", name="app_todos_comentarios")
-     */
-    public function todosComentariosAction()
-    {
-        $m = $this->getDoctrine()->getManager();
-        $comentarioRepositorio = $m->getRepository('AppBundle:Comentario');
-        $comentarios = $comentarioRepositorio->todosComentarios();
-        return $this->render(':comentario:ultimos-comentarios-sin-fecha.html.twig', ['comentarios' => $comentarios]);
-    }
+   
     
 
     public function comentariosDeLasPublicacionesAction($id)

@@ -40,6 +40,20 @@ class Categoria
 
     private $nuevasCategorias;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime")
+     */
+    private $updatedAt;
+
 
 
     public function __construct()
@@ -161,5 +175,14 @@ class Categoria
         return $this;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    
     
 }

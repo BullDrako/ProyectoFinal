@@ -1,0 +1,21 @@
+{% extends ':admin:plantilla.html.twig' %}
+
+
+{% block headTitle %}Todos los Comentarios{% endblock %}
+
+{% block body %}
+    {% for comentario in comentarios %}
+        <div class="rounded-box margin-bottom-md">
+            {% if comentario.autor == app.user or is_granted('ROLE_ADMIN') %}
+                <div style="float: right;">
+                    <a href="{{ path('app_comentario_editar', {'id': comentario.id}) }}"><img src="{{ asset('icons/glyphicons-151-edit.png') }}" alt="edit comment" /></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_admin_comentario_borrar', {'id': comentario.id}) }}"><img src="{{ asset('icons/glyphicons-198-remove.png') }}" alt="remove comment" /></a>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="margin-bottom-sm"><strong>Comentario de:</strong> <a href="{{ path('app_publicaciones_de_un_Usuario', {'username': comentario.autor.username}) }}">@{{ comentario.autor }}</a> :: <strong>Creado:</strong> {{ comentario.createdAt|date("d/m/Y H:i:s") }} :: <strong>Modificado:</strong> {{ comentario.updatedAt|date("d/m/Y H:i:s") }}</div>
+            <div style="font-size: medium">{{ comentario }}</div></br>
+        </div>
+        {% endfor %}
+{% endblock %}

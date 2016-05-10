@@ -25,5 +25,7 @@ class PublicacionController extends Controller
         return $this->redirectToRoute('app_publicacion_publicaciones');
     }
 
+  
+
 
 }

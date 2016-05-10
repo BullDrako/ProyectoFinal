@@ -72,7 +72,7 @@ class CategoriaRepository extends \Doctrine\ORM\EntityRepository
             }
         }
     }
-
+    
     public function busquedaBuscarTodasLascategorias()
     {
         return $this->createQueryBuilder('categoria')
@@ -126,5 +126,6 @@ class CategoriaRepository extends \Doctrine\ORM\EntityRepository
             ->execute()
             ;
     }
+    
 
 }

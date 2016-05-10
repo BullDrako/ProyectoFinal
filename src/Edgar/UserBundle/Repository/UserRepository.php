@@ -37,8 +37,9 @@ class UserRepository extends EntityRepository
 
     }
 
-    public function todosUsuarios()
-    {
-        return $this->todosUsuarios()->execute();
-    }
+   
+   
+   
+    
+    
 }

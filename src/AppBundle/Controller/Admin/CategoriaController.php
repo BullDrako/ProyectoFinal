@@ -14,6 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Form\CategoriaType;
 use AppBundle\Form\CategoriaType2;
+use AppBundle\Form\CategoriaType3;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -86,6 +87,38 @@ class CategoriaController extends Controller
             'form'  => $form->createView(),
             'title' => 'Nueva Categoria',
         ]);
+    }
+
+    /**
+     * @Route("/editar-categria-admin/{id}", name="app_editar_categoria_admin")
+     */
+    public function editarCategoriaAdmin(Request $request, Categoria $categoria)
+    {
+        $form = $this->createForm(CategoriaType3::class, $categoria, [
+            'submit_label'  => 'Editar categoria'
+        ]);
+        $now = new \DateTime();
+        $sinceCreated = $now->diff($categoria->getCreatedAt());
+        $minutes = $sinceCreated->days * 24 * 60 + $sinceCreated->h * 60 + $sinceCreated->i;
+        if ($minutes > 4 and !$this->isGranted('ROLE_ADMIN')) {
+            $form->remove('title');
+        }
+        if ($request->getMethod() == Request::METHOD_POST) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $m = $this->getDoctrine()->getManager();
+                $m->getRepository('AppBundle:Categoria');
+                //$categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
+                //$categoriaRepositorio->añadirCategoriasSiSonNuevas($publicacion);
+                $m->flush();
+                return $this->redirectToRoute('app_admin_categorias');
+            }
+        }
+        return $this->render(':admin/categoria:form-categoria.html.twig', [
+            'form'  => $form->createView(),
+            'titulo' => 'Editar Publicacion',
+        ]);
+
     }
 
 
