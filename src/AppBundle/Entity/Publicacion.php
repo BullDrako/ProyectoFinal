@@ -82,6 +82,21 @@ class Publicacion
 
     private $image;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="votosPositivos", type="integer")
+     */
+
+    private $votosPositivos;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="votosNegativos", type="integer")
+     */
+    private $votosNegativos;
+
 
 
     public function __construct()

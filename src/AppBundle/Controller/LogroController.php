@@ -20,9 +20,7 @@ class LogroController extends Controller
     /**
      * @Route("/logrosUsuario/{id}", name="app_logros_usuario_id")
      */
-
-   
-
+    
     public function logrosUsuarioIdAction(Request $request, $id)
     {
         $m = $this->getDoctrine()->getManager();

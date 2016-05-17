@@ -32,3 +32,4 @@ class ComentarioType extends AbstractType
         return 'app_bundle_comentario_type';
     }
 }
+

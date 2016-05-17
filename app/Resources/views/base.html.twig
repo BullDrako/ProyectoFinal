@@ -26,20 +26,20 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<!--<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('app_index_index') }}">Symfony Project</a>
+            <a class="navbar-brand" href="{#{{ path('app_index_index') }}#}">Symfony Project</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li></li>
                 <li></li>
@@ -47,13 +47,44 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <div class="navbar-form navbar-right">
-                    {{ render_esi(controller('UserBundle:HoritzontalLogin:horitzontalLogin', {'route': app.request.get('_route')})) }}
+                    {#{{ render_esi(controller('UserBundle:HoritzontalLogin:horitzontalLogin', {'route': app.request.get('_route')})) }}#}
                 </div>
             </ul>
         </div><!-- /.navbar-collapse -->
 
+<!--</div>
+</nav>-->
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('app_index_index') }}">Symfony Project2</a>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div>
+                <a class="btn btn-default botonadmin" href="{{ path('app_admin_index_index') }}">Panel del Admin</a>
+            </div>
+        {% endif %}
+        <div class="collapse navbar-collapse" id="myNavbar">
+
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <div class="navbar-form ">
+                    {{ render_esi(controller('UserBundle:HoritzontalLogin:horitzontalLogin', {'route': app.request.get('_route')})) }}
+                </div>
+            </ul>
+        </div>
     </div>
 </nav>
+
+
+
 
 <div class="container">
     <ul>
@@ -75,7 +106,7 @@
                     <div class="row margin-bottom-md">
                         <div class="col-md-12">
                             {{ render(controller('AppBundle:Comentario:ultimosComentarios')) }}
-                            <a class="btn btn-default" style="font-size:x-large;width: 100%" href="">Sidebar
+                            <a class="btn btn-default" style="font-size:x-large;width: 100%" href="">comentarios
 
                             </a>
                         </div>
@@ -91,12 +122,15 @@
 </div> <!-- /container -->
 
 {% block javascripts %}
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
 {% endblock %}
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.min.js') }}"><\/script>')</script>
 </body>

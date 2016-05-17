@@ -68,11 +68,5 @@ class IndexController extends Controller
 
 
 
-    /**
-     * @Route(path="/kk", name="app_admin_usuarios1")
-     */
-    public function usuariosAction()
-    {
-        return $this->render(':index:index2.html.twig');
-    }
+   
 }

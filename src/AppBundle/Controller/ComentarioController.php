@@ -62,7 +62,7 @@ class ComentarioController extends Controller
     public function editarAction(Comentario $comentario, Request $request)
     {
         if (!$this->isGranted('ROLE_ADMIN') and $this->getUser() != $comentario->getAutor()) {
-            throw $this->createAccessDeniedException('You are not allowed to do this');
+            throw $this->createAccessDeniedException('No tienes acceso a esto');
         }
         $form = $this->createForm(ComentarioType::class, $comentario, ['submit_label' => 'Editar Comentario']);
         if ($request->getMethod() == Request::METHOD_POST) {

@@ -25,3 +25,35 @@
     white-space: nowrap; /*comentario en una sola línea*/
     text-overflow: ellipsis; /*pone 3 puntos*/
 }
+
+@media (min-width: 768px){
+    .navbar{
+    border-radius: 0px;
+    }
+}
+
+.navbar-nav{
+    margin: 0px!important;
+
+}
+
+@media (max-width: 768px){
+    .botoneslogin{
+        margin-left: 65px;
+    }
+    .botoneslogin2{
+        margin-left: 30px;
+    }
+
+    .botonadmin{
+        margin-left:157px!important;
+        margin-top: -42px!important;
+        float:left!important;
+    }
+}
+
+.botonadmin{
+    margin-left:1px;
+    margin-top: 8px;
+    float:left;
+}
