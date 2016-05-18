@@ -15,8 +15,8 @@ class CategoriaType extends AbstractType
         $builder
            /* ->add('categorias', null, ['expanded' => true])
             ->add('nuevasCategorias')*/
-               ->add('nombre')
-            ->add('submit', SubmitType::class, [
+           ->add('nombre')
+           ->add('submit', SubmitType::class, [
                 'label' => $options['submit_label'],
             ])
         ;

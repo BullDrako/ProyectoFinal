@@ -51,7 +51,9 @@ class ComentarioController extends Controller
             $m->flush();
             return $this->redirectToRoute('app_publicacion_mostrar', ['id' => $publicacion->getId()]);
         }
+        //si no se envia, cajad e texto para enviarlo de nuevo
         return $this->forward('AppBundle:Comentario:MostrarFormulario', ['id' => $publicacion->getId()]);
+
     }
 
 
@@ -64,7 +66,9 @@ class ComentarioController extends Controller
         if (!$this->isGranted('ROLE_ADMIN') and $this->getUser() != $comentario->getAutor()) {
             throw $this->createAccessDeniedException('No tienes acceso a esto');
         }
-        $form = $this->createForm(ComentarioType::class, $comentario, ['submit_label' => 'Editar Comentario']);
+        $form = $this->createForm(ComentarioType::class, $comentario, [
+            'submit_label' => 'Editar Comentario'
+        ]);
         if ($request->getMethod() == Request::METHOD_POST) {
             $form->handleRequest($request);
             if ($form->isValid()) {

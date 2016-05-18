@@ -65,7 +65,7 @@ class CategoriaController extends Controller
             'title' => 'Nueva Categoria',
         ]);*/
 
-        $publicacion = new Publicacion();
+        /*$publicacion = new Publicacion();
         $form = $this->createForm(CategoriaType2::class, $publicacion);
         if ($request->getMethod() == Request::METHOD_POST) {
             $form->handleRequest($request);
@@ -86,7 +86,28 @@ class CategoriaController extends Controller
         return $this->render(':admin/categoria:form-categoria.html.twig', [
             'form'  => $form->createView(),
             'title' => 'Nueva Categoria',
+        ]);*/
+
+
+        $categoria = new Categoria();
+        $form = $this->createForm(CategoriaType::class, $categoria);
+
+        if ($request->getMethod() == Request::METHOD_POST) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $m = $this->getDoctrine()->getManager();
+                $m->persist($categoria);
+                $m->flush();
+                //return $this->redirectToRoute('app_categorias_categorias');
+                //return $this->redirect('categorias-admin');
+                return $this->redirectToRoute('app_admin_categorias');
+            }
+        }
+        return $this->render(':admin/categoria:form-categoria.html.twig', [
+            'form'      => $form->createView(),
+            'title' => 'Nueva Categoria',
         ]);
+
     }
 
     /**
@@ -97,12 +118,7 @@ class CategoriaController extends Controller
         $form = $this->createForm(CategoriaType3::class, $categoria, [
             'submit_label'  => 'Editar categoria'
         ]);
-        $now = new \DateTime();
-        $sinceCreated = $now->diff($categoria->getCreatedAt());
-        $minutes = $sinceCreated->days * 24 * 60 + $sinceCreated->h * 60 + $sinceCreated->i;
-        if ($minutes > 4 and !$this->isGranted('ROLE_ADMIN')) {
-            $form->remove('title');
-        }
+
         if ($request->getMethod() == Request::METHOD_POST) {
             $form->handleRequest($request);
             if ($form->isValid()) {

@@ -59,6 +59,8 @@ class Categoria
     public function __construct()
     {
         $this->publicaciones = new ArrayCollection();
+        $this->createdAt    = new \DateTime();
+        $this->updatedAt    = $this->createdAt;
 
     }
 

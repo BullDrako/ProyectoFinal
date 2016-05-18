@@ -14,7 +14,7 @@ class PublicacionType extends AbstractType
         $builder
             ->add('contenido')
             ->add('categorias', null, ['expanded' => true])
-            ->add('nuevasCategorias')
+            //->add('nuevasCategorias')
             ->add('image', ImageType::class)
             ->add('submit', SubmitType::class, [
                 'label' => $options['submit_label'],

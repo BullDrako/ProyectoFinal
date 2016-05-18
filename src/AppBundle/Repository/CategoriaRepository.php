@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class CategoriaRepository extends \Doctrine\ORM\EntityRepository
 {
+    /*
     public function añadirCategoriasSiSonNuevas(Publicacion $publicacion)
     {
         $categoriasPresentadas = $publicacion->getNuevasCategorias();
@@ -55,7 +56,7 @@ class CategoriaRepository extends \Doctrine\ORM\EntityRepository
                 }
             }
         }*/
-        $categoriasPresentadas = $publicacion->getNuevasCategorias();
+       /* $categoriasPresentadas = $publicacion->getNuevasCategorias();
         preg_replace('/\s+/', ' ', $categoriasPresentadas);
         $categoriasV = explode(';', $categoriasPresentadas);
         foreach($categoriasV as $nombCategoria) {
@@ -71,7 +72,7 @@ class CategoriaRepository extends \Doctrine\ORM\EntityRepository
                 }
             }
         }
-    }
+    }*/
     
     public function busquedaBuscarTodasLascategorias()
     {

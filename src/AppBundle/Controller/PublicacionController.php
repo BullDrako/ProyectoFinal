@@ -68,7 +68,7 @@ class PublicacionController extends Controller
 
     public function NuevaPublicacionAction(Request $request)
     {
-        $publicacion = new Publicacion();
+        /*$publicacion = new Publicacion();
         $form = $this->createForm(PublicacionType::class, $publicacion);
         if ($request->getMethod() == Request::METHOD_POST) {
             $form->handleRequest($request);
@@ -82,6 +82,27 @@ class PublicacionController extends Controller
                 return $this->redirectToRoute('app_publicacion_mostrar', ['id' => $publicacion->getId()]);
             }
         }
+        return $this->render(':publicacion:form.html.twig', [
+            'form'  => $form->createView(),
+            'titulo' => 'Nueva Publicacion',
+        ]);*/
+
+
+        $publicacion = new Publicacion();
+        $form = $this->createForm(PublicacionType::class, $publicacion);
+        if ($request->getMethod() == Request::METHOD_POST) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $m = $this->getDoctrine()->getManager();
+                $categoriasRepo = $m->getRepository('AppBundle:Categoria');
+                $publicacionRepo = $m->getRepository('AppBundle:Publicacion');
+                $publicacion->setAutor($this->getUser());
+                $m->persist($publicacion);
+                $m->flush();
+                return $this->redirectToRoute('app_publicacion_mostrar', ['id' => $publicacion->getId()]);
+            }
+        }
+
         return $this->render(':publicacion:form.html.twig', [
             'form'  => $form->createView(),
             'titulo' => 'Nueva Publicacion',
@@ -99,18 +120,13 @@ class PublicacionController extends Controller
         $form = $this->createForm(PublicacionType::class, $publicacion, [
             'submit_label'  => 'Editar publicacion'
         ]);
-        $now = new \DateTime();
-        $sinceCreated = $now->diff($publicacion->getCreatedAt());
-        $minutes = $sinceCreated->days * 24 * 60 + $sinceCreated->h * 60 + $sinceCreated->i;
-        if ($minutes > 4 and !$this->isGranted('ROLE_ADMIN')) {
-            $form->remove('title');
-        }
+
         if ($request->getMethod() == Request::METHOD_POST) {
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $m = $this->getDoctrine()->getManager();
                 $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
-                $categoriaRepositorio->añadirCategoriasSiSonNuevas($publicacion);
+                //$categoriaRepositorio->añadirCategoriasSiSonNuevas($publicacion);
                 $m->flush();
                 return $this->redirectToRoute('app_publicacion_mostrar', ['id' => $publicacion->getId()]);
             }

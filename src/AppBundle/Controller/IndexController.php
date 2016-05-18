@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Categoria;
 use AppBundle\Entity\Image;
 use AppBundle\Entity\Publicacion;
 use AppBundle\Form\ImageType;
@@ -22,8 +23,11 @@ class IndexController extends Controller
     {
         $m = $this->getDoctrine()->getManager();
         $publicacionRepositorio= $m->getRepository('AppBundle:Publicacion');
+        $categoriaRepositorio= $m->getRepository('AppBundle:Categoria');
 
         $query = $publicacionRepositorio->buscarTodasLasPublicaciones();
+        $categorias = $categoriaRepositorio->buscarTodasLasCategorias();
+        
         $paginator = $this->get('knp_paginator');
 
         $publicaciones =$paginator->paginate(
@@ -37,6 +41,7 @@ class IndexController extends Controller
 
         return $this->render(':index:index.html.twig', [
             'publicaciones'  => $publicaciones,
+            'categorias' => $categorias,
             'titulo'          =>'Publicaciones']);
 
     }
@@ -65,8 +70,5 @@ class IndexController extends Controller
             'form' => $form->createView(),
         ]);
     }
-
-
-
-   
+       
 }
