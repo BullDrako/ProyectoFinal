@@ -28,4 +28,25 @@ class LogroRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->buscarLogrosDeUnUsuario($id)->execute();
     }
+    
+    public function todosLogros()
+    {
+        /*return $this->createQueryBuilder('logro')
+            ->select('logro.nombre', 'logro.descripcion')
+            ->from('AppBundle:Logro', 'logro')
+            ->getQuery()
+            ->execute()
+            ;*/
+
+        return $this->createQueryBuilder('logro')
+            ->addOrderBy('logro.id', 'ASC')
+            ->leftJoin('logro.usuario', 'usuario')
+            ->getQuery()
+            ;
+    }
+
+    public function logrosTodos()
+    {
+        return $this->todosLogros()->execute();
+    }
 }

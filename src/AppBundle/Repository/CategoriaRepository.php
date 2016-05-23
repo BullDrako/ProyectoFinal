@@ -15,64 +15,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class CategoriaRepository extends \Doctrine\ORM\EntityRepository
 {
-    /*
-    public function añadirCategoriasSiSonNuevas(Publicacion $publicacion)
-    {
-        $categoriasPresentadas = $publicacion->getNuevasCategorias();
-        preg_replace('/\s+/', ' ', $categoriasPresentadas);
-        $categoriasV = explode(';', $categoriasPresentadas);
-        foreach($categoriasV as $nombCategoria) {
-            if ($nombCategoria) {
-               // $categoria = $this->findOneByName($textoCategoria);
-                $categoria = $this->findOneByNombre($nombCategoria);
-                if (!$categoria) {
-                    $nuevaCategoria = new Categoria();
-                    $nuevaCategoria->setNombre($nombCategoria);
-                    $publicacion->añadirCategoria($nuevaCategoria);
-                } else {
-                    $publicacion->añadirCategoria($categoria);
-                }
-            }
-        }
-    }
-
-
-
-    public function añadirCategoriasSiSonNuevasAdmin(Publicacion $publicacion)
-    {
-        /*$categoriasPresentadas = $categorias->getNuevasCategorias();
-        preg_replace('/\s+/', ' ', $categoriasPresentadas);
-        $categoriasV = explode(';', $categoriasPresentadas);
-        foreach($categoriasV as $nombCategoria) {
-            if ($nombCategoria) {
-                // $categoria = $this->findOneByName($textoCategoria);
-                $categoria = $this->findOneByNombre($nombCategoria);
-                if (!$categoria) {
-                    $nuevaCategoria = new Categoria();
-                    $nuevaCategoria->setNombre($nombCategoria);
-                    $categorias->añadirCategoria($nuevaCategoria);
-                } else {
-                    $categorias->añadirCategoria($categoria);
-                }
-            }
-        }*/
-       /* $categoriasPresentadas = $publicacion->getNuevasCategorias();
-        preg_replace('/\s+/', ' ', $categoriasPresentadas);
-        $categoriasV = explode(';', $categoriasPresentadas);
-        foreach($categoriasV as $nombCategoria) {
-            if ($nombCategoria) {
-                // $categoria = $this->findOneByName($textoCategoria);
-                $categoria = $this->findOneByNombre($nombCategoria);
-                if (!$categoria) {
-                    $nuevaCategoria = new Categoria();
-                    $nuevaCategoria->setNombre($nombCategoria);
-                    $publicacion->añadirCategoria($nuevaCategoria);
-                } else {
-                    $publicacion->añadirCategoria($categoria);
-                }
-            }
-        }
-    }*/
     
     public function busquedaBuscarTodasLascategorias()
     {
@@ -89,36 +31,8 @@ class CategoriaRepository extends \Doctrine\ORM\EntityRepository
         return $this->busquedaBuscarTodasLascategorias()->execute();
     }
 
-    public function buscarPublicacionesPorcategoriaId($id)
-    {
-        return $this->createQueryBuilder('categoria')
-            ->leftJoin('categoria.publicaciones', 'publicaciones')
-            ->andWhere('categoria.id = :id')
-            ->setParameter('id', $id)
-            ->addSelect('publicaciones')
-            ->addOrderBy('publicaciones.createdAt', 'DESC')
-            ->getQuery()
-            ;
-    }
-
-   /** public function buscarPublicacionesPorcategoriaId2($id)
-    {
-        $em = $this->getEntityManager();
-
-        $query = $em->createQueryBuilder()
-            ->select('p', 'categoria')
-            ->from('AppBundle:Publicacion', 'p')
-            ->leftJoin('p.categorias', 'categoria')
-            ->andWhere('categoria.id = :id')
-            ->setParameter('id', $id)
-            ->addOrderBy('p.createdAt', 'DESC')
-            ->getQuery()
-        ;
-
-        return $query;
-    }*/
-
-    public function getCategoriasNoUsadas()
+  
+    public function todasCategoriasNoUsadas()
     {
         return $this->createQueryBuilder('categoria')
             ->leftJoin('categoria.publicaciones', 'publicaciones')

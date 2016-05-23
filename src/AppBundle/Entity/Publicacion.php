@@ -105,6 +105,8 @@ class Publicacion
         $this->comentarios  = new ArrayCollection();
         $this->createdAt    = new \DateTime();
         $this->updatedAt    = $this->createdAt;
+        $this->votosPositivos = new ArrayCollection();
+        $this->votosNegativos = new ArrayCollection();
     }
 
 
@@ -355,4 +357,39 @@ class Publicacion
     {
         return $this->image;
     }
+
+    /**
+     * @return int
+     */
+    public function getVotosPositivos()
+    {
+        return $this->votosPositivos;
+    }
+
+    /**
+     * @param int $votosPositivos
+     */
+    public function setVotosPositivos()
+    {
+        $this->votosPositivos = 0;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVotosNegativos()
+    {
+        return $this->votosNegativos;
+    }
+
+    /**
+     * @param int $votosNegativos
+     */
+    public function setVotosNegativos()
+    {
+        $this->votosNegativos = 0;
+    }
+
+
+    
 }

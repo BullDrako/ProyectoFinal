@@ -46,23 +46,7 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->buscarPublicacionesQueTieneCategoriaId($nombre)->execute();
     }
-
-
-    public function buscarPublicacionesPorcategoriaId2($id)
-    {
-        $em = $this->getEntityManager();
-        $query =  $em->createQueryBuilder()
-            ->select('p', 'categoria')
-            ->from('AppBundle:Publicacion', 'p')
-            ->leftJoin('p.categorias', 'categoria')
-            ->andWhere('categoria.id = :id')
-            ->setParameter('id', $id)
-            ->addOrderBy('p.createdAt', 'DESC')
-            ->getQuery()
-        ;
-        //var_dump($query->getDQL());die;
-        return $query;
-    }
+    
     
 
     public function buscarPublicacionesDeUnUsuarioId($id)

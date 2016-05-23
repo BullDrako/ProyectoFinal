@@ -3,16 +3,18 @@
 {% block headTitle %}<span class="color-letra">Logros</span>{% endblock %}
 
 {% block body %}
-    <h1 class="color-letra">Logros</h1>
+    <h1 class="color-letra">Todos Logros</h1>
     <hr>
 
     {% for logro in logros %}
         <h3 class="color-letra">{{ logro.nombre }}</h3>
-       <span class="color-letra"> {{ logro.descripcion }}</span>
+        <span class="color-letra"> {{ logro.descripcion }}</span>
     {% endfor %}
 
 
-    <div class="navigation">
-        {{ knp_pagination_render(logros) }}
-    </div>
+    {% if app.user.publicaciones.count >= 1 %}
+        {% if logros %}
+        {{ logros.id }}
+        {% endif %}
+        {% endif %}
 {% endblock %}

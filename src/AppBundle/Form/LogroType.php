@@ -3,20 +3,17 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class PublicacionType extends AbstractType
+class LogroType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('contenido', TextType::class, array('data'=>' ¿León o Huevón?'))
-            ->add('categorias', null, ['expanded' => true])
-            //->add('nuevasCategorias')
-            ->add('image', ImageType::class)
+            ->add('nombre')
+            ->add('descripcion')
             ->add('submit', SubmitType::class, [
                 'label' => $options['submit_label'],
             ])
@@ -26,13 +23,13 @@ class PublicacionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'    => 'AppBundle\Entity\Publicacion',
-            'submit_label'  => 'Nueva Publicacion',
+            'data_class'    => 'AppBundle\Entity\Logro',
+            'submit_label'  => 'Nuevo Logro',
         ]);
     }
 
     public function getName()
     {
-        return 'app_bundle_publicacion_type';
+        return 'app_bundle_logro_type';
     }
 }

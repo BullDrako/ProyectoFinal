@@ -160,7 +160,7 @@ class CategoriaController extends Controller
     {
         $m = $this->getDoctrine()->getManager();
         $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
-        $categorias = $categoriaRepositorio->getCategoriasNoUsadas();
+        $categorias = $categoriaRepositorio->todasCategoriasNoUsadas();
 
         return $this->render(':admin/categoria:categorias-no-usadas.html.twig', [
             'categorias' => $categorias,
@@ -171,17 +171,17 @@ class CategoriaController extends Controller
     /**
      * @Route("/borrar-todas-categorias-no-usadas", name="app_admin_categoria_borrarTodascategoriasNoUsadas")
      */
-    public function borrarTodasCategoriasNoUsadasAction()
+    /*public function borrarTodasCategoriasNoUsadasAction()
     {
         $m = $this->getDoctrine()->getManager();
         $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
-        $categorias = $categoriaRepositorio->getCategoriasNoUsadas();
+        $categorias = $categoriaRepositorio->todasCategoriasNoUsadas();
         foreach ($categorias as $categoria) {
             $m->remove($categoria);
         }
         $m->flush();
         return $this->redirectToRoute('app_admin_categoria_no_usada');
-    }
+    }*/
 
 
     /**

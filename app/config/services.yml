@@ -4,9 +4,3 @@ services:
         tags:
             - { name: twig.extension }
 
-    app.publicacion_voter:
-                class: AppBundle\Security\PublicacionVoter
-                arguments: ['@security.access.decision_manager']
-                tags:
-                     - { name: security.voter }
-                public: false

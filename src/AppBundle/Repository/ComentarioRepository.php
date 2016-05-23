@@ -28,17 +28,7 @@ class ComentarioRepository extends EntityRepository
         return $this->buscarComentariosPorPublicacion($id)->execute();
     }
 
-    public function borrarComentariosPorArticulo($id)
-    {
-        $this->createQueryBuilder('c')
-            ->delete()
-            ->leftJoin('c.publicacion', 'publicacion')
-            ->andWhere('publicacion.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->execute()
-            ;
-    }
+   
 
     public function ultimosComentarios()
     {

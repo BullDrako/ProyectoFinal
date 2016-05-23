@@ -48,4 +48,6 @@ class LogroController extends Controller
         return $response;
 
     }
+    
+    
 }

@@ -1,3 +1,10 @@
+body{
+    background-image: url("../images/fondo.jpg");
+   /* background-size: cover;*/
+
+
+}
+
 .rounded-box {
     padding: 19px;
     background-color: white;
@@ -18,7 +25,9 @@
 }
 .margin-bottom-lg {
     margin-bottom: 30px;
-    position:relative;
+    /*position:relative;*/
+    /*z-index: -1;*/
+
 }
 
 .comentarios-sidebar{
@@ -91,4 +100,63 @@
 
 .icono{
     width: 50px;
+    position: relative;
+    z-index: 1;
+    margin-left: -55px; /*-45px*/
+    border-radius: 13px;
+    margin-top: -8px;
 }
+
+.h1-redonda-id{
+    position: static;
+    z-index: -1;
+}
+
+.categoriasPrincipal-Individual{
+    margin: 3px;
+    box-shadow:inset -2px -3px 8px #A29F7B, 2px 4px 8px red; /*altura anchura sombra #090909*/ /*2px 4px 35px 4px #FF0000!important*//*2px 4px 8px #FF0000!important*/
+}
+
+/*
+box-shadow: inset -2px -3px 8px #A29F7B, 2px 4px 8px red
+
+*/
+
+.color-letra{
+    color: white;
+}
+
+.flash-success{
+    color: yellow!important;
+
+}
+
+.navbar-inverse{
+    background-color: rgba(34,34,34, 0.75) !important;
+    border: 1px dotted rgba(34,34,34, 0.75) ;
+}
+
+a{
+    color: #FF0000;
+}
+
+a:hover{
+    color: #5CB85C;
+
+}
+
+
+.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+    background-color: #FF0000;
+    border-color: #FF0000;
+}
+
+.pagination>li>a{
+    color:#FF0000;
+}
+
+.pagination>li>a:hover{
+    color:#000000;
+}
+
+

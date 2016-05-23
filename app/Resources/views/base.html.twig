@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
     {% endblock %}
 
+
+
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -117,21 +119,21 @@
     </div>
     <hr>
     <footer>
-        <p class="text-right">&copy; 2016 Edgar Cabeza</p>
+        <p class="text-right color-letra">&copy; 2016 Edgar Cabeza</p>
     </footer>
 </div> <!-- /container -->
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/ajax_voto.js') }}"></script>
 
 {% endblock %}
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+{#<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>#}
 <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.min.js') }}"><\/script>')</script>
 </body>
 </html>

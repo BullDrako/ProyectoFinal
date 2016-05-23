@@ -93,17 +93,6 @@ class ComentarioController extends Controller
         $comentarios = $comentarioRepositorio->ultimosComentarios();
         return $this->render(':comentario:ultimos-comentarios-sin-fecha.html.twig', ['comentarios' => $comentarios]);
     }
-
-
-   
     
-
-    public function comentariosDeLasPublicacionesAction($id)
-    {
-        $m = $this->getDoctrine()->getManager();
-        $comentarioRepositorio = $m->getRepository('AppBundle:Comentario');
-        $comentarios = $comentarioRepositorio->comentariosPorPublicacion($id);
-        return $this->render(':comentario:ultimos-comentarios.html.twig', ['comentarios' => $comentarios]);
-    }
 
 }
