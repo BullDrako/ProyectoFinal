@@ -4,7 +4,7 @@
     <div>
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <div>
-                <span class="color-letra">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</span> <span class="color-letra">|</span> <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                <span class="color-letra">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</span> <span class="color-letra">|</span> <a class="redondeado" href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
             </div>
             <div>
                 <ul>
@@ -17,7 +17,7 @@
 
 
         {% else %}
-            <span class="color-letra">Estás como usuario Anónimo</span> | <a  href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> - <a  href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+            <span class="color-letra">Estás como usuario Anónimo</span> | <a class="redondeado" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> - <a class="redondeado" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
 
         {% endif %}
 

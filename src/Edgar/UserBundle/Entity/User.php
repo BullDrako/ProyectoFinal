@@ -63,6 +63,12 @@ class User extends BaseUser
 
     private $logros;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Publicacion", mappedBy="owner")
+     */
+    private $publis;
+
     /**
      * User constructor.
      */
@@ -76,6 +82,7 @@ class User extends BaseUser
         $this->publicaciones     = new ArrayCollection();
         $this->comentarios    = new ArrayCollection();
         $this->logros    = new ArrayCollection();
+        $this->publis = new ArrayCollection();
     }
 
     public function setCreatedAt()

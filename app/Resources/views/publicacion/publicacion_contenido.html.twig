@@ -26,7 +26,10 @@
         </div>
 
     <div style="border-top:1px solid #DDD; padding-top: 10px;">
+        <img class="imagenPubli" src="/images/upload/{{ publicacion.imageName }}" title="{{ publicacion.publiFile }}"/>
         <div style="margin: 10px 0;float: left">
+
+
             {% for categoria in publicacion.categorias %}
                 <a class="btn btn-default" href="{{ path('app_publicacionesQueTieneCategoria', {'nombre': categoria.nombre}) }}">{{ categoria }}</a>
             {% endfor %}
@@ -49,7 +52,10 @@
     <ul class="votos">
         <li class="votar" data-voto="votosPositivos" data-id="{{ publicacion.id }}">Positivos <span>{{ publicacion.votosPositivos }}</span></li>
         <li class="votar" data-voto="votosNegativos" data-id="{{ publicacion.id }}">Negativos <span>{{ publicacion.votosNegativos }}</span></li>
+
     </ul>
+
+
 
 
 

@@ -42,22 +42,38 @@ $(document).ready(function()
 
         if(voto_hecho && id)
         {
-            
-            $.post('/ajax_voto.php', {'id':id, 'voto':voto_hecho}, function(data)
+
+
+           /* $.ajax({
+                async:true,
+                type: "POST",
+                dataType: "jsonp",
+                contentType: "application/x-www-form-urlencoded",
+                url:"votar.php",
+                data:{'id':id, 'voto':voto_hecho},
+                success: function procesar(datos){
+                    if (data!="voto_duplicado")
+                    {
+                        li.addClass(voto_hecho+"_votado").find("span").text(data);
+                        li.closest("ul").append("<span class='votado'>Gracias!</span>");
+                    }
+                    else li.closest("ul").append("<span class='votado'>Ya has votado!</span>");
+                },
+                beforeSent:function() {$('.votado').fadeOut('fast');}, timeout: 3000
+            });*/
+
+
+
+            $.post('/votos', {'id':id, 'voto':voto_hecho}, function(data)
             {
                 if (data!="voto_duplicado")
                 {
-                    li.addClass(voto_hecho+"_votado").find("span").text(data);
+                    li.addClass(voto_hecho).find("span").text(data);
                     li.closest("ul").append("<span class='votado'>Gracias!</span>");
                 }
                 else li.closest("ul").append("<span class='votado'>Ya has votado!</span>");
             });
             setTimeout(function() {$('.votado').fadeOut('fast');}, 3000);
-
-
-
-
-
 
 
         }

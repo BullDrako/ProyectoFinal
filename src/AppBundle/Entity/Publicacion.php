@@ -3,13 +3,22 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+
 
 /**
  * Publicacion
  *
+ * @ORM\Entity
+ * @Vich\Uploadable
  * @ORM\Table(name="publicacion")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PublicacionRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -75,18 +84,29 @@ class Publicacion
     private $comentarios;
 
 
-
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", inversedBy="publicacion", cascade={"persist"})
-     */
-
-    private $image;
-
-    /**
-     * @var int
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @ORM\Column(name="votosPositivos", type="integer")
+     * @Vich\UploadableField(mapping="image_upload", fileNameProperty="imageName")
+     *
+     * @var File
      */
+    private $publiFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     *
+     */
+    private $imageName;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Edgar\UserBundle\Entity\User", cascade={"persist"}, inversedBy="publis")
+     */
+    private $owner;
+    
 
     private $votosPositivos;
 
@@ -107,6 +127,55 @@ class Publicacion
         $this->updatedAt    = $this->createdAt;
         $this->votosPositivos = new ArrayCollection();
         $this->votosNegativos = new ArrayCollection();
+    }
+
+
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Publicacion
+     */
+    public function setpubliFile(File $image = null)
+    {
+        $this->publiFile = $image;
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+        return $this;
+    }
+    /**
+     * @return File
+     */
+    public function getPubliFile()
+    {
+        return $this->publiFile;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return Publicacion
+     */
+    public function setImageName($imageName)
+    {
+        $this->imageName = $imageName;
+        return $this;
+    }
+    /**
+     * @return string
+     */
+    public function getImageName()
+    {
+        return $this->imageName;
     }
 
 
@@ -334,29 +403,29 @@ class Publicacion
         return $this->comentarios;
     }
 
-    /**
-     * Set foto
-     *
-     * @param \AppBundle\Entity\Image $image
-     *
-     * @return Publicacion
-     */
-    public function setImage(\AppBundle\Entity\Image $image = null)
-    {
-        $this->foto = $image;
 
-        return $this;
+   
+
+    /**
+     * @return mixed
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 
     /**
-     * Get foto
-     *
-     * @return \AppBundle\Entity\Image
+     * @param mixed $owner
      */
-    public function getImage()
+    public function setOwner($owner)
     {
-        return $this->image;
+        $this->owner = $owner;
     }
+
+
+
+    
+
 
     /**
      * @return int
