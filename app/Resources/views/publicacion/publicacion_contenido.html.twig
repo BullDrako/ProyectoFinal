@@ -1,4 +1,4 @@
-<div class="rounded-box margin-bottom-lg" >
+<div class="rounded-box margin-bottom-lg"  >
 
     <div style="float: right;">
         {% if publicacion.autor == app.user or is_granted('ROLE_ADMIN') %}
@@ -49,11 +49,21 @@
     </div>
 
 
-    <ul class="votos">
-        <li class="votar" data-voto="votosPositivos" data-id="{{ publicacion.id }}">Positivos <span>{{ publicacion.votosPositivos }}</span></li>
-        <li class="votar" data-voto="votosNegativos" data-id="{{ publicacion.id }}">Negativos <span>{{ publicacion.votosNegativos }}</span></li>
+    <div class="votos">
+        <span class="votar votar-positivo" data-voto="votosPositivos" data-id="{{ publicacion.id }}">
+            <a href="{{ path('app_voto_positivo', {'id': publicacion.id}) }}">
+                <div class="btn btn-danger">León ({{ publicacion.votosPositivos }})</div>
+            </a>
 
-    </ul>
+        </span>
+
+        <span class="votar votar-negativo" data-voto="votosNegativos" data-id="{{ publicacion.id }}">
+            <a href="{{ path('app_voto_negativo', {'id': publicacion.id}) }}">
+                <div class="btn btn-danger"> Huevón ({{ publicacion.votosNegativos }})</div>
+            </a>
+        </span>
+
+    </div>
 
 
 

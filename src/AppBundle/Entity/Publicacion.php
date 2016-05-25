@@ -106,16 +106,21 @@ class Publicacion
      * @ORM\ManyToOne(targetEntity="Edgar\UserBundle\Entity\User", cascade={"persist"}, inversedBy="publis")
      */
     private $owner;
-    
 
-    private $votosPositivos;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="votosPositivos", type="integer")
+     */
+    private $votosPositivos = 0;
 
     /**
      * @var int
      *
      * @ORM\Column(name="votosNegativos", type="integer")
      */
-    private $votosNegativos;
+    private $votosNegativos = 0;
 
 
 
@@ -440,7 +445,7 @@ class Publicacion
      */
     public function setVotosPositivos()
     {
-        $this->votosPositivos = 0;
+        $this->votosPositivos = $this->votosPositivos + 1;
     }
 
     /**
@@ -456,7 +461,7 @@ class Publicacion
      */
     public function setVotosNegativos()
     {
-        $this->votosNegativos = 0;
+        $this->votosNegativos = $this->votosNegativos + 1;
     }
 
 

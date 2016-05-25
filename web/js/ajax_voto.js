@@ -3,6 +3,7 @@ $(document).ready(function()
     /*$("body").click(function () {
         alert("hola");
     });*/
+
     
     $(".contenedor-publicacion .rounded-box").mouseover(function (){
 
@@ -33,9 +34,11 @@ $(document).ready(function()
 
 
 
-    $(".votos .votar").click(function (e)
+    $(".votos .votar").click(function ()
     {
-        e.preventDefault();
+      // alert($(this).parent().parent().parent().attr("id"));
+
+       /* e.preventDefault();
         var voto_hecho = $(this).data('voto');
         var id = $(this).data("id");
         var li = $(this);
@@ -62,7 +65,7 @@ $(document).ready(function()
                 beforeSent:function() {$('.votado').fadeOut('fast');}, timeout: 3000
             });*/
 
-
+/*
 
             $.post('/votos', {'id':id, 'voto':voto_hecho}, function(data)
             {
@@ -76,7 +79,7 @@ $(document).ready(function()
             setTimeout(function() {$('.votado').fadeOut('fast');}, 3000);
 
 
-        }
+        }*/
     });
 
 

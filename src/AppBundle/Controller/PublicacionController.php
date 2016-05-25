@@ -184,6 +184,36 @@ class PublicacionController extends Controller
         ]);
     }
 
+    /**
+     * @Route("positivo/{id}", name="app_voto_positivo")
+     */
+    public function votarPositivoAction($id)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $repositorio = $m->getRepository('AppBundle:Publicacion');
+        $publicacion = $repositorio->find($id);
 
+        $publicacion->setVotosPositivos();
+        $m->flush();
+
+        return $this->redirect('/#'.$id);
+       
+    }
+
+    /**
+     * @Route("negativo/{id}", name="app_voto_negativo")
+     */
+    public function votarNegativoAction(Request $request, $id)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $repositorio = $m->getRepository('AppBundle:Publicacion');
+        $publicacion = $repositorio->find($id);
+
+        $publicacion->setVotosNegativos();
+        $m->flush();
+
+        return $this->redirect('/#'.$id);
+        
+    }
 
 }

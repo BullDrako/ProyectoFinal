@@ -47,9 +47,11 @@
         {% endif %}
 
     <br>
-    <div class="contenedor-publicacion">
+    <div class="contenedor-publicacion" >
         {% for publicacion in publicaciones %}
+            <span id="{{ publicacion.id }}">
             {% include ':publicacion:publicacion_contenido.html.twig' %}
+            </span>
         {% endfor %}
 
         {% if not doPagination is defined %}

@@ -163,3 +163,17 @@ a:hover{
     width: 100%;
     margin: 0 auto!important;
 }
+
+.votar-negativo{
+    float: right;
+    margin-top: 0px;
+    margin-right: 115px;
+}
+
+.votar-positivo{
+    margin-left: 115px;
+}
+
+.votos{
+    margin-right: 10px;
+}
