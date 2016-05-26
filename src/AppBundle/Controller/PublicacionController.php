@@ -20,6 +20,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Edgar\UserBundle\Entity\User;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class PublicacionController extends Controller
 {
@@ -34,13 +36,13 @@ class PublicacionController extends Controller
     public function publicacionesAction(Request $request)
     {
         $m = $this->getDoctrine()->getManager();
-        $publicacionRepositorio= $m->getRepository('AppBundle:Publicacion');
+        $publicacionRepositorio = $m->getRepository('AppBundle:Publicacion');
 
         $query = $publicacionRepositorio->buscarTodasLasPublicaciones();
 
         $paginator = $this->get('knp_paginator');
 
-        $publicaciones =$paginator->paginate(
+        $publicaciones = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
             Publicacion::PAGINATION_ITEMS,
@@ -51,8 +53,8 @@ class PublicacionController extends Controller
 
 
         $response = $this->render(':publicacion:publicaciones.html.twig', [
-            'publicaciones'  => $publicaciones,
-            'titulo'          =>'Publicaciones'
+            'publicaciones' => $publicaciones,
+            'titulo' => 'Publicaciones'
 
         ]);
 
@@ -103,7 +105,7 @@ class PublicacionController extends Controller
         }
 
         return $this->render(':publicacion:form.html.twig', [
-            'form'  => $form->createView(),
+            'form' => $form->createView(),
             'titulo' => 'Nueva Publicacion',
         ]);
     }
@@ -116,7 +118,7 @@ class PublicacionController extends Controller
     {
 
         $form = $this->createForm(PublicacionType::class, $publicacion, [
-            'submit_label'  => 'Editar publicacion'
+            'submit_label' => 'Editar publicacion'
         ]);
 
         if ($request->getMethod() == Request::METHOD_POST) {
@@ -130,7 +132,7 @@ class PublicacionController extends Controller
             }
         }
         return $this->render(':publicacion:form.html.twig', [
-            'form'  => $form->createView(),
+            'form' => $form->createView(),
             'titulo' => 'Editar Publicacion',
         ]);
     }
@@ -142,12 +144,12 @@ class PublicacionController extends Controller
     {
         $m = $this->getDoctrine()->getManager();
         $comentarioRepositorio = $m->getRepository('AppBundle:Comentario');
-        $query = $comentarioRepositorio->buscarComentariosPorPublicacion($publicacion->getId());
+        $query = $comentarioRepositorio->buscarComentariosDeLasPublicaciones($publicacion->getId());
         $paginator = $this->get('knp_paginator');
         $comentarios = $paginator->paginate($query, $request->query->getInt('page', 1), Comentario::PAGINATION_ITEMS);
         return $this->render(':publicacion:publicacion.html.twig', [
-            'publicacion'   => $publicacion,
-            'comentarios'  => $comentarios,
+            'publicacion' => $publicacion,
+            'comentarios' => $comentarios,
         ]);
     }
 
@@ -163,8 +165,8 @@ class PublicacionController extends Controller
         $paginator = $this->get('knp_paginator');
         $publicaciones = $paginator->paginate($query, $request->query->getInt('page', 1), Publicacion::PAGINATION_ITEMS);
         return $this->render(':publicacion:publicaciones.html.twig', [
-            'publicaciones'  => $publicaciones,
-            'titulo'     => '#' . $categoria->getNombre(),
+            'publicaciones' => $publicaciones,
+            'titulo' => '#' . $categoria->getNombre(),
         ]);
     }
 
@@ -179,16 +181,28 @@ class PublicacionController extends Controller
         $paginator = $this->get('knp_paginator');
         $publicaciones = $paginator->paginate($query, $request->query->getInt('page', 1), Publicacion::PAGINATION_ITEMS);
         return $this->render(':publicacion:publicaciones.html.twig', [
-            'publicaciones'  => $publicaciones,
-            'titulo'     => '@' . $user->getUsername(),
+            'publicaciones' => $publicaciones,
+            'titulo' => '@' . $user->getUsername(),
         ]);
     }
 
     /**
      * @Route("positivo/{id}", name="app_voto_positivo")
      */
-    public function votarPositivoAction($id)
+    public function votarPositivoAction($id, Request $request)
     {
+        /* if (!$request->isXmlHttpRequest()) {
+             $m = $this->getDoctrine()->getManager();
+             $repositorio = $m->getRepository('AppBundle:Publicacion');
+             $publicacion = $repositorio->find($id);
+
+             $publicacion->setVotosPositivos();
+             $m->flush();
+
+             //return $this->redirect('/#'.$id);
+             return new JsonResponse(array('data' => 'You can access this only using Ajax!'), 400);
+
+         }*/
         $m = $this->getDoctrine()->getManager();
         $repositorio = $m->getRepository('AppBundle:Publicacion');
         $publicacion = $repositorio->find($id);
@@ -196,8 +210,8 @@ class PublicacionController extends Controller
         $publicacion->setVotosPositivos();
         $m->flush();
 
-        return $this->redirect('/#'.$id);
-       
+        return $this->redirect('/#' . $id);
+
     }
 
     /**
@@ -212,8 +226,8 @@ class PublicacionController extends Controller
         $publicacion->setVotosNegativos();
         $m->flush();
 
-        return $this->redirect('/#'.$id);
-        
-    }
+        return $this->redirect('/#' . $id);
 
+    }
+    
 }

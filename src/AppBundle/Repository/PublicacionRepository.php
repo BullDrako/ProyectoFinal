@@ -67,21 +67,6 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
         return $this->buscarPublicacionesDeUnUsuarioId($id)->execute();
     }
 
-    public function votarPositivo()
-    {
-        return $this->createQueryBuilder('p')
-            ->update('p.votosPositivos')
-            ->from('AppBundle:Publicacion', 'votosp')
-            ->set('p.votosPositivos', +1)
-            ->getQuery()
-            ->execute()
-            ;
-
-    }
-
-    public function votosPositivos()
-    {
-        return $this->votarPositivo()->execute();
-    }
+   
 
 }

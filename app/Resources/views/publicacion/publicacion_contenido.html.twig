@@ -12,7 +12,7 @@
     </div>
     <h1 class="h1-redonda-id" style="margin-top: 0"><a style="color: white; text-decoration: inherit; position: relative; z-index: 2" href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}">{{ publicacion.id }}</a> <a href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}"><img class="icono" src="{{ asset('icons/glyphicons-176-stop.png') }}"/></a></h1>
     <div>
-        <strong>Publicado por:</strong> <a href="{{ path('app_publicaciones_de_un_Usuario', {'username': publicacion.autor.username}) }}">@{{ publicacion.autor }}</a> ::
+        <strong>Publicado por:</strong> <a class="autor" href="{{ path('app_publicaciones_de_un_Usuario', {'username': publicacion.autor.username}) }}">@{{ publicacion.autor }}</a> ::
         <strong>Creada:</strong> {{ publicacion.createdAt|date("d/m/Y H:i:s") }} ::
         <strong>Modificada:</strong> {{ publicacion.updatedAt|date("d/m/Y H:i:s") }}
 
@@ -26,7 +26,13 @@
         </div>
 
     <div style="border-top:1px solid #DDD; padding-top: 10px;">
-        <img class="imagenPubli" src="/images/upload/{{ publicacion.imageName }}" title="{{ publicacion.publiFile }}"/>
+        {% if publicacion.imageName %}
+
+            <img class="imagenPubli" src="/images/upload/{{ publicacion.imageName }}" alt="noimagen" title="{{ publicacion.publiFile }}"/>
+
+        {% else %}
+
+       {% endif %}
         <div style="margin: 10px 0;float: left">
 
 

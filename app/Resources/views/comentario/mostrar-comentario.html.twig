@@ -8,6 +8,24 @@
             {% endif %}
         </div>
     {% endif %}
-    <div class="margin-bottom-sm"><strong>Comentario de:</strong> <a href="{{ path('app_publicaciones_de_un_Usuario', {'username': comentario.autor.username}) }}">@{{ comentario.autor }}</a> :: <strong>Creado:</strong> {{ comentario.createdAt|date("d/m/Y H:i:s") }} :: <strong>Modificado:</strong> {{ comentario.updatedAt|date("d/m/Y H:i:s") }}</div>
+    <div class="margin-bottom-sm"><strong>Comentario de:</strong> <a class="autor" href="{{ path('app_publicaciones_de_un_Usuario', {'username': comentario.autor.username}) }}">@{{ comentario.autor }}</a> :: <strong>Creado:</strong> {{ comentario.createdAt|date("d/m/Y H:i:s") }} :: <strong>Modificado:</strong> {{ comentario.updatedAt|date("d/m/Y H:i:s") }}</div>
     <div style="font-size: medium">{{ comentario }}</div>
+
+    <div class="">
+        <span class="votar votar-positivo" data-voto="votosPositivos" data-id="{{ comentario.id }}">
+            <a href="{{ path('app_voto_comentario_positivo', {'id': comentario.id}) }}">
+                <div class="btn btn-danger">León ({{ comentario.votosPositivos }})</div>
+            </a>
+
+        </span>
+
+        <span class="votar votar-negativo" data-voto="votosNegativos" data-id="{{ comentario.id }}">
+            <a href="{{ path('app_voto_comentario_negativo', {'id': comentario.id}) }}">
+                <div class="btn btn-danger"> Huevón ({{ comentario.votosNegativos }})</div>
+            </a>
+        </span>
+
+    </div>
+
+
 </div>

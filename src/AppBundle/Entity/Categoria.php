@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Categoria
 {
 
-    const PAGINATION_ITEMS = 5;
+    const PAGINATION_ITEMS = 20;
 
     /**
      * @var int

@@ -15,7 +15,7 @@ class PublicacionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('contenido', TextType::class, array('data'=>' ¿León o Huevón?'))
+            ->add('contenido'/*, TextType::class, array('data'=>' ¿León o Huevón?')*/)
             ->add('categorias', null, ['expanded' => true])
             //->add('nuevasCategorias')
             //->add('image', ImageType::class)

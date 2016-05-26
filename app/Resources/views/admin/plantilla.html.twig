@@ -98,16 +98,18 @@
                     <a href="{{ path('app_admin_todos_comentarios') }}">Comentarios</a>
                 </li>
             </ul>
-               {# <li><a href="#">Nuevo comentario</a></li>
-                <li><a href="#">Actualizar comentario</a></li>
-                <li><a href="#">Borrar comentario</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="">Usuarios</a></li>
-                <li><a href="">Nuevo Usuario</a></li>
-                <li><a href="">Actualizar usuario</a></li>
-                <li><a href="">Borrar usuario</a></li>
-            </ul>#}
+
+            {#<iframe src="http://www.minijuegostop.com.mx/showFlash.php?id=17791" width="175" height="400" frameborder="0" ></iframe>#}
+              {# <li><a href="#">Nuevo comentario</a></li>
+               <li><a href="#">Actualizar comentario</a></li>
+               <li><a href="#">Borrar comentario</a></li>
+           </ul>
+           <ul class="nav nav-sidebar">
+               <li><a href="">Usuarios</a></li>
+               <li><a href="">Nuevo Usuario</a></li>
+               <li><a href="">Actualizar usuario</a></li>
+               <li><a href="">Borrar usuario</a></li>
+           </ul>#}
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">{% block headTitle %}{% endblock %}</h1>
@@ -121,6 +123,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 
 <script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/ajax_voto.js') }}"></script>
 <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.min.js') }}"><\/script>')</script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

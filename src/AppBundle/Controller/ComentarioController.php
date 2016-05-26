@@ -93,6 +93,57 @@ class ComentarioController extends Controller
         $comentarios = $comentarioRepositorio->ultimosComentarios();
         return $this->render(':comentario:ultimos-comentarios-sin-fecha.html.twig', ['comentarios' => $comentarios]);
     }
-    
+
+
+    /**
+     * @Route("comentario-positivo/{id}", name="app_voto_comentario_positivo")
+     */
+    public function votarPositivoAction($id, Request $request)
+    {
+        /* if (!$request->isXmlHttpRequest()) {
+             $m = $this->getDoctrine()->getManager();
+             $repositorio = $m->getRepository('AppBundle:Publicacion');
+             $publicacion = $repositorio->find($id);
+ 
+             $publicacion->setVotosPositivos();
+             $m->flush();
+ 
+             //return $this->redirect('/#'.$id);
+             return new JsonResponse(array('data' => 'You can access this only using Ajax!'), 400);
+ 
+         }*/
+        $m = $this->getDoctrine()->getManager();
+        $repositorio = $m->getRepository('AppBundle:Comentario');
+        $comentario = $repositorio->find($id);
+
+        $comentario->setVotosPositivos();
+        $m->flush();
+
+        return $this->redirect('/#'.$id);
+
+    }
+
+    /**
+     * @Route("negativo/{id}", name="app_voto_comentario_negativo")
+     */
+    public function votarNegativoAction(Request $request, Comentario $id)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $repositorio = $m->getRepository('AppBundle:Comentario');
+        $comentario = $repositorio->find($id);
+        $routeName = $request->get('_route');
+        $comentario->setVotosNegativos();
+        $m->flush();
+
+       // return $this->redirect($routeName.$id);
+
+        return $this->redirectToRoute($routeName);
+        
+        
+        
+        
+
+
+    }
 
 }

@@ -65,7 +65,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('app_index_index') }}">Symfony Project2</a>
+            <a class="navbar-brand" href="{{ path('app_index_index') }}"><img class="logo" src="{{ asset('images/logoProyect-largo.png') }}" />{#Symfony Project2#}</a>
         </div>
         {% if is_granted('ROLE_ADMIN') %}
             <div>
@@ -120,6 +120,8 @@
     <hr>
     <footer>
         <p class="text-right color-letra">&copy; 2016 Edgar Cabeza</p>
+
+       {# <iframe src="http://www.minijuegostop.com.mx/showFlash.php?id=17791" width="400" height="630" frameborder="0" ></iframe>#}
     </footer>
 </div> <!-- /container -->
 

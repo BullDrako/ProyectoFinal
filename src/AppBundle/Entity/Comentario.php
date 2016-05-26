@@ -60,6 +60,23 @@ class Comentario
     private $publicacion;
 
 
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="votosPositivos", type="integer")
+     */
+    private $votosPositivos = 0;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="votosNegativos", type="integer")
+     */
+    private $votosNegativos = 0;
+
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -196,4 +213,39 @@ class Comentario
     {
         return $this->getComentario();
     }
+
+
+
+    /**
+     * @return int
+     */
+    public function getVotosPositivos()
+    {
+        return $this->votosPositivos;
+    }
+
+    /**
+     * @param int $votosPositivos
+     */
+    public function setVotosPositivos()
+    {
+        $this->votosPositivos = $this->votosPositivos + 1;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVotosNegativos()
+    {
+        return $this->votosNegativos;
+    }
+
+    /**
+     * @param int $votosNegativos
+     */
+    public function setVotosNegativos()
+    {
+        $this->votosNegativos = $this->votosNegativos + 1;
+    }
+
 }

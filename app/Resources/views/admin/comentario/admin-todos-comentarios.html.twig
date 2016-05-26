@@ -14,7 +14,7 @@
                     {% endif %}
                 </div>
             {% endif %}
-            <div class="margin-bottom-sm"><strong>Comentario de:</strong> <a href="{{ path('app_publicaciones_de_un_Usuario', {'username': comentario.autor.username}) }}">@{{ comentario.autor }}</a> :: <strong>Creado:</strong> {{ comentario.createdAt|date("d/m/Y H:i:s") }} :: <strong>Modificado:</strong> {{ comentario.updatedAt|date("d/m/Y H:i:s") }}</div>
+            <div class="margin-bottom-sm"><strong>Comentario de:</strong> <a class="autor" href="{{ path('app_publicaciones_de_un_Usuario', {'username': comentario.autor.username}) }}">@{{ comentario.autor }}</a> :: <strong>Creado:</strong> {{ comentario.createdAt|date("d/m/Y H:i:s") }} :: <strong>Modificado:</strong> {{ comentario.updatedAt|date("d/m/Y H:i:s") }}</div>
             <div style="font-size: medium">{{ comentario }}</div></br>
         </div>
         {% endfor %}

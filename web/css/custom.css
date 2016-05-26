@@ -5,6 +5,11 @@ body{
 
 }
 
+.logo{
+    max-width: 261px;
+    margin-top:-9px;
+}
+
 .rounded-box {
     padding: 19px;
     background-color: white;
@@ -73,6 +78,21 @@ body{
     float:left;
 }
 
+@media (min-width: 0px) and (max-width: 768px){
+    .botonadmin{
+        display:none
+    }
+
+    
+}
+
+@media (min-width: 900px){
+    .margin-bottom-lg{
+        margin-top: 0px;
+    }
+
+}
+
 .categoriasPrincipal{
 
     /*border: 1px solid;*/
@@ -96,6 +116,7 @@ body{
     .categoriasPrincipal{
         margin-top: -88px;
     }
+
 }
 
 .icono{
@@ -176,4 +197,28 @@ a:hover{
 
 .votos{
     margin-right: 10px;
+}
+
+
+
+.nav-sidebar > .active > a {
+    background-color: #FF0000;
+}
+
+.navbar-inverse .navbar-nav>.active>a{
+    background-color: #FF0000;
+}
+
+.color-Categorias{
+    background-color: #FF0000;
+    border-color: #000;
+}
+.color-Categorias:hover{
+    color: #000;
+    background-color: #FBFF04;
+    border-color: #000;
+}
+
+a:hover{
+    text-decoration: none;
 }

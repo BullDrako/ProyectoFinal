@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ComentarioRepository extends EntityRepository
 {
-    public function buscarComentariosPorPublicacion($id)
+    public function buscarComentariosDeLasPublicaciones($id)
     {
         return $this->createQueryBuilder('c')
             ->leftJoin('c.publicacion', 'publicacion')
@@ -25,7 +25,7 @@ class ComentarioRepository extends EntityRepository
 
     public function comentariosPorPublicacion($id)
     {
-        return $this->buscarComentariosPorPublicacion($id)->execute();
+        return $this->buscarComentariosDeLasPublicaciones($id)->execute();
     }
 
    

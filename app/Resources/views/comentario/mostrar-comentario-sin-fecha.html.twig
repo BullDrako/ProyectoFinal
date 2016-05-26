@@ -10,8 +10,8 @@
     {% endif %}
 
     <div class="margin-bottom-sm comentarios-sidebar">
-        <a href="{{ path('app_publicaciones_de_un_Usuario', {'username': comentario.autor.username}) }}">@{{ comentario.autor }}</a>
-        <div style="font-size: medium;" class="comentarios-sidebar"> {{ comentario }}</div>
+        <span style="color: white">  </span><a class="autor" href="{{ path('app_publicaciones_de_un_Usuario', {'username': comentario.autor.username}) }}">@{{ comentario.autor }}</a>
+        <div style="font-size: medium;" class="comentarios-sidebar"> <span style="color: white">  </span>{{ comentario }}</div>
 
 
 </div>

@@ -4,5 +4,7 @@
 {% block headTitle %}Mostrar Publicacion{% endblock %}
 
 {% block body %}
+    <div class="contenedor-publicacion" >
     {% include ':publicacion:publicacion_contenido.html.twig' with {'show_content': true, 'comentarios': comentarios} %}
+    </div>
 {% endblock %}
