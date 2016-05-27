@@ -40,38 +40,39 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Panel</a>
+            <a class="navbar-brand" href="{{ path('app_index_index') }}">Volver</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Inicio</a></li>
+                {#<li><a href="/">Inicio</a></li>#}
 
-                <li><a href="{{ path('app_publicacion_publicaciones') }}">Publicaciones</a></li>
+                <li {% if app.request.get('_route') == 'app_admin_index_index' %}class="active"{% endif %}>
+                    <a class="hover-admin" href="{{ path('app_admin_index_index') }}">Publicaciones</a></li>
                 <li {% if app.request.get('_route') == 'app_admin_categorias' %}class="active"{% endif %} >
-                    <a href="{{ path('app_admin_categorias') }}">Categorias</a></li>
-                <li><a href="{{ path('app_admin_crear_categoria') }}">Nueva Categoria</a></li>
+                    <a class="hover-admin" href="{{ path('app_admin_categorias') }}">Categorias</a></li>
+                <li><a class="hover-admin" href="{{ path('app_admin_crear_categoria') }}">Nueva Categoria</a></li>
                 <li {% if app.request.get('_route') == 'app_admin_categoria_no_usada' %}class="active"{% endif %}>
-                    <a href="{{ path('app_admin_categoria_no_usada') }}">Categorias no usadas</a>
+                    <a class="hover-admin" href="{{ path('app_admin_categoria_no_usada') }}">Categorias no usadas</a>
                 </li>
                {# <li {% if app.request.get('_route') == 'app_admin_categoria_borrarTodascategoriasNoUsadas' %}class="active"{% endif %}>
                     <a href="{{ path('app_admin_categoria_borrarTodascategoriasNoUsadas') }}">Borrar todas las categorias no utilizadas</a>
                 </li>#}
                 <li {% if app.request.get('_route') == 'app_admin_todos_comentarios' %}class="active"{% endif %}>
-                    <a href="{{ path('app_admin_todos_comentarios') }}">Comentarios</a>
+                    <a class="hover-admin" href="{{ path('app_admin_todos_comentarios') }}">Comentarios</a>
                 </li>
 
                 <li {% if app.request.get('_route') == 'app_admin_usuarios' %}class="active"{% endif %}>
-                    <a href="{{ path('app_admin_usuarios') }}">Usuarios</a>
+                    <a class="hover-admin" href="{{ path('app_admin_usuarios') }}">Usuarios</a>
                 </li>
-
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Buscar...">
+                </form>
 
 
 
 
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Buscar...">
-            </form>
+
         </div>
     </div>
 </nav>
@@ -80,17 +81,17 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li>
-                <a href="{{ path('app_publicacion_publicaciones') }}">Publicaciones</a></li>
+                <li {% if app.request.get('_route') == 'app_admin_index_index' %}class="active"{% endif %}>
+                <a class="hover-admin" href="{{ path('app_admin_index_index') }}">Publicaciones</a></li>
                 {#<a href="{{ path('app_publicacionesQueTieneCategoria') }}">Publicaciones por categoria</a></li>#}
             </ul>
             <ul class="nav nav-sidebar">
 
                <li {% if app.request.get('_route') == 'app_admin_categorias' %}class="active"{% endif %}>
-                <a href="{{ path('app_admin_categorias') }}">Categorias</a></li>
-                <li><a href="{{ path('app_admin_crear_categoria') }}">Nueva Categoria</a></li>
+                <a class="hover-admin" href="{{ path('app_admin_categorias') }}">Categorias</a></li>
+                <li><a class="hover-admin" href="{{ path('app_admin_crear_categoria') }}">Nueva Categoria</a></li>
                 <li {% if app.request.get('_route') == 'app_admin_categoria_no_usada' %}class="active"{% endif %}>
-                    <a href="{{ path('app_admin_categoria_no_usada') }}">Categorias no usadas</a>
+                    <a class="hover-admin" href="{{ path('app_admin_categoria_no_usada') }}">Categorias no usadas</a>
                 </li>
                 {#<li {% if app.request.get('_route') == 'app_admin_categoria_borrarTodascategoriasNoUsadas' %}class="active"{% endif %}>
                     <a href="{{ path('app_admin_categoria_borrarTodascategoriasNoUsadas') }}">Borrar todas las categorias no utilizadas</a>
@@ -99,11 +100,11 @@
 
             <ul class="nav nav-sidebar">
                 <li {% if app.request.get('_route') == 'app_admin_todos_comentarios' %}class="active"{% endif %}>
-                    <a href="{{ path('app_admin_todos_comentarios') }}">Comentarios</a>
+                    <a class="hover-admin" href="{{ path('app_admin_todos_comentarios') }}">Comentarios</a>
                 </li>
 
                 <li {% if app.request.get('_route') == 'app_admin_usuarios' %}class="active"{% endif %}>
-                    <a href="{{ path('app_admin_usuarios') }}">Usuarios</a>
+                    <a class="hover-admin" href="{{ path('app_admin_usuarios') }}">Usuarios</a>
                 </li>
             </ul>
 

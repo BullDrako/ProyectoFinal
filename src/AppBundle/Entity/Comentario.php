@@ -80,10 +80,15 @@ class Comentario
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-        $this->updatedAt = $this->createdAt;
+        $this->updatedAt    = new \DateTime("now");
     }
 
-
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue() {
+        $this->setUpdatedAt(new \DateTime());
+    }
 
     /**
      * Get id
@@ -152,7 +157,7 @@ class Comentario
      */
     public function setUpdatedAt()
     {
-        $this->updatedAt = new \DateTime();
+        $this->updatedAt = new \DateTime("now");
 
         return $this;
     }

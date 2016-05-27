@@ -46,6 +46,7 @@ $(document).ready(function()
         $(this).css("border-radius","none");
         $(this).css("background-color","transparent");
         $(this).css("color", "#FF0000")
+       
     });
 
 

@@ -1,7 +1,9 @@
 
 <div class="rounded-box margin-bottom-md">
-    <h3>Ultimos comentarios</h3>
+    <h3 style="text-align: center">Ultimos comentarios</h3>
+    <hr>
 {% for comentario in comentarios %}
+
     {% include ':comentario:mostrar-comentario-sin-fecha.html.twig' with {'comentario': comentario} %}
 {% endfor %}
  </div>

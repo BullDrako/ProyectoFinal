@@ -2,6 +2,7 @@
 
 namespace Edgar\UserBundle\Controller;
 
+use Edgar\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -36,6 +37,18 @@ class HoritzontalLoginController extends Controller
         $query = $userRepositorio->todosUsuarios();
         
         return $this->render(':usuarios:usuarios.html.twig',['usuarios' => $query]);
+
+    }
+
+    /**
+     * @Route("/borrar-ususario/{id}", name="app_admin_borrar_usuario")
+     */
+    public function borrarUsuarioAction(User $usuario){
+        $m = $this->getDoctrine()->getManager();
+        $m->remove($usuario);
+        $m->flush();
+
+        return $this->redirectToRoute('app_admin_usuarios');
 
     }
 

@@ -1,5 +1,6 @@
 
 <div class="rounded-box margin-bottom-md " style="border:none;">
+
     {% if comentario.autor == app.user or is_granted('ROLE_ADMIN') %}
         <div style="float: right;">
             <a href="{{ path('app_comentario_editar', {'id': comentario.id}) }}"><img src="{{ asset('icons/glyphicons-151-edit.png') }}" alt="editar-comentario" /></a>

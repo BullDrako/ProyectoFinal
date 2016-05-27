@@ -94,7 +94,7 @@ class Publicacion
     private $publiFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      *
@@ -129,12 +129,17 @@ class Publicacion
         $this->categorias   = new ArrayCollection();
         $this->comentarios  = new ArrayCollection();
         $this->createdAt    = new \DateTime();
-        $this->updatedAt    = $this->createdAt;
+        $this->updatedAt    = new \DateTime("now");
         $this->votosPositivos = new ArrayCollection();
         $this->votosNegativos = new ArrayCollection();
     }
 
-
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue() {
+        $this->setUpdatedAt(new \DateTime());
+    }
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -276,7 +281,7 @@ class Publicacion
      */
     public function setUpdatedAt()
     {
-        $this->updatedAt = new \DateTime();
+        $this->updatedAt = new \DateTime("now");
 
         return $this;
     }

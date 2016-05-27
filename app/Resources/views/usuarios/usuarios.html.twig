@@ -6,10 +6,13 @@
 <span class="color-letra">
     {% for usuario in usuarios %}
 
+
+
         <p class="color-letra ">Nombre de usuario: <a href="{{ path('app_publicaciones_de_un_Usuario', {'username': usuario.username}) }}"><span class="autor">{{ usuario.username }}</span></a> </p>
         <p class="color-letra">Correo electŕonico: {{ usuario.email }}</p>
         <p class="color-letra">Miembro desde: {{ usuario.createdAt|date("d/m/Y") }}</p>
-        <p class="color-letra">Última conexión: {{ usuario.lastLogin|date("d/m/Y") }} a las{{ usuario.lastLogin|date(" H:i:s") }}</p>
+        <p class="color-letra">Última conexión: {{ usuario.lastLogin|date("d/m/Y") }} a las{{ usuario.lastLogin|date(" H:i:s") }} </p>
+        <a class="btn btn-danger" href="{{ path('app_admin_borrar_usuario', {'id': usuario.id}) }}">Eliminar</a>
         <hr>
     {% endfor %}
 </span>

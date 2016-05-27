@@ -146,6 +146,16 @@ class User extends BaseUser
         $this->publicaciones = $publicaciones;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    
     
     
 }
