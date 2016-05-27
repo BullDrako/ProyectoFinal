@@ -47,3 +47,9 @@ app.admin.logros:
     resource: "@AppBundle/Controller/Admin/LogroController.php"
     type: annotation
     prefix: /logros
+
+app.admin.usuarios:
+    resource: "@UserBundle/Controller/HoritzontalLoginController.php"
+    type: annotation
+    prefix: /admin/usuarios
+

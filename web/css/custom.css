@@ -222,3 +222,12 @@ a:hover{
 a:hover{
     text-decoration: none;
 }
+
+@media (max-width: 520px){
+    .votar-negativo{
+        margin-right: 60px;
+    }
+    .votar-positivo{
+        margin-left: 70px!important;
+    }
+}

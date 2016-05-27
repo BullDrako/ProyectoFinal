@@ -14,6 +14,7 @@ use AppBundle\Entity\Publicacion;
 use AppBundle\Entity\Comentario;
 use AppBundle\Entity\Categoria;
 use AppBundle\Form\PublicacionType;
+use AppBundle\Form\PublicacionTypeLoH;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
@@ -90,7 +91,7 @@ class PublicacionController extends Controller
 
 
         $publicacion = new Publicacion();
-        $form = $this->createForm(PublicacionType::class, $publicacion);
+        $form = $this->createForm(PublicacionTypeLoH::class, $publicacion);
         if ($request->getMethod() == Request::METHOD_POST) {
             $form->handleRequest($request);
             if ($form->isValid()) {

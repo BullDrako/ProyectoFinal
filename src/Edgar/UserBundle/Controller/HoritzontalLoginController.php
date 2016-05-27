@@ -4,6 +4,7 @@ namespace Edgar\UserBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +22,21 @@ class HoritzontalLoginController extends Controller
             'last_username' => $last_username,
             'route'         => $route,
         ]);
+    }
+
+    /**
+     * @Route("/todos-usuarios", name="app_admin_usuarios")
+     */
+    
+    public function listaUsuariosAction()
+    {
+        $m = $this->getDoctrine()->getManager();
+        $userRepositorio = $m->getRepository('UserBundle:User');
+
+        $query = $userRepositorio->todosUsuarios();
+        
+        return $this->render(':usuarios:usuarios.html.twig',['usuarios' => $query]);
+
     }
 
 

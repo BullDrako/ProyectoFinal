@@ -148,7 +148,10 @@ class CategoriaController extends Controller
         $m = $this->getDoctrine()->getManager();
         $m->remove($categoria);
         $m->flush();
-        return $this->redirectToRoute('app_admin_categoria_no_usada');
+
+        //return $this->redirectToRoute('app_admin_categoria_no_usada');
+        return $this->redirectToRoute('app_admin_categorias');
+        //return $this->render(':admin/index:categorias-para-admin.html.twig');
     }
 
 

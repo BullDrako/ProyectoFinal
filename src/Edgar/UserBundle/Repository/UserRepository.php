@@ -36,6 +36,22 @@ class UserRepository extends EntityRepository
             ;
 
     }
+    
+    public function todosUsuarios()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u.username', 'u.email', 'u.lastLogin', 'u.createdAt', 'u.id')
+            ->from('UserBundle:User', 'user')
+            ->distinct('u.username')
+            ->orderBy('u.createdAt')
+            ->getQuery()
+            ->execute();
+    }
+    
+    public function todosAllUsuarios()
+    {
+        return $this->todosUsuarios()->execute();
+    }
 
    
    
