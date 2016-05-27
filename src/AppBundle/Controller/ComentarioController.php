@@ -135,9 +135,9 @@ class ComentarioController extends Controller
         $comentario->setVotosNegativos();
         $m->flush();
 
-       // return $this->redirect($routeName.$id);
+        return $this->redirect($routeName.$id);
 
-        return $this->redirectToRoute($routeName);
+       // return $this->redirectToRoute($routeName);
         
         
         

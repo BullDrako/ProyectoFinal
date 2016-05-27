@@ -10,9 +10,10 @@
         {% endif %}
 
     </div>
-    <h1 class="h1-redonda-id" style="margin-top: 0"><a style="color: white; text-decoration: inherit; position: relative; z-index: 2" href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}">{{ publicacion.id }}</a> <a href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}"><img class="icono" src="{{ asset('icons/glyphicons-176-stop.png') }}"/></a></h1>
+    <h1 class="h1-redonda-id" style="margin-top: 0"><a style="color: white; text-decoration: inherit; position: relative; z-index: 2" class="btn btn-default boton-id-publi" href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}">{{ publicacion.id }}</a> <a href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}">{#<img class="icono" src="{{ asset('icons/glyphicons-176-stop.png') }}"/>#}</a></h1>
+
     <div>
-        <strong>Publicado por:</strong> <a class="autor" href="{{ path('app_publicaciones_de_un_Usuario', {'username': publicacion.autor.username}) }}">@{{ publicacion.autor }}</a> ::
+        <strong>Publicada por:</strong> <a class="autor" href="{{ path('app_publicaciones_de_un_Usuario', {'username': publicacion.autor.username}) }}">@{{ publicacion.autor }}</a> ::
         <strong>Creada:</strong> {{ publicacion.createdAt|date("d/m/Y H:i:s") }} ::
         <strong>Modificada:</strong> {{ publicacion.updatedAt|date("d/m/Y H:i:s") }}
 
@@ -28,7 +29,7 @@
     <div style="border-top:1px solid #DDD; padding-top: 10px;">
         {% if publicacion.imageName %}
 
-            <img class="imagenPubli" src="/images/upload/{{ publicacion.imageName }}" alt="noimagen" title="{{ publicacion.publiFile }}"/>
+            <a href="{{ path('app_publicacion_mostrar', {'id': publicacion.id}) }}"> <img class="imagenPubli" src="/images/upload/{{ publicacion.imageName }}" alt="noimagen" title="{{ publicacion.publiFile }}"/></a>
 
         {% else %}
 

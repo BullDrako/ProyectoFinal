@@ -67,6 +67,48 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
         return $this->buscarPublicacionesDeUnUsuarioId($id)->execute();
     }
 
-   
+
+    public function topVotosPositivos(){
+        return $this->createQueryBuilder('p')
+
+            ->leftJoin('p.categorias', 'categorias')
+            ->addSelect('categorias')
+            ->leftJoin('p.autor', 'autor')
+            ->addSelect('autor')
+            ->leftJoin('p.comentarios', 'comentarios')
+            ->addSelect('comentarios')
+            ->addOrderBy('p.votosPositivos' , 'DESC')
+
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
+    public function votosPositivios()
+    {
+        return $this->topVotosPositivos()->execute();
+    }
+
+
+    public function topVotosNegativos(){
+        return $this->createQueryBuilder('p')
+
+            ->leftJoin('p.categorias', 'categorias')
+            ->addSelect('categorias')
+            ->leftJoin('p.autor', 'autor')
+            ->addSelect('autor')
+            ->leftJoin('p.comentarios', 'comentarios')
+            ->addSelect('comentarios')
+            ->addOrderBy('p.votosNegativos' , 'DESC')
+
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
+    public function votosNegativos()
+    {
+        return $this->topVotosNegativos()->execute();
+    }
 
 }

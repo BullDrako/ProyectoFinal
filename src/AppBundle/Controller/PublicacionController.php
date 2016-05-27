@@ -230,5 +230,60 @@ class PublicacionController extends Controller
         return $this->redirect('/#' . $id);
 
     }
+
+
+    /**
+     * @Route("/top-leon", name="app_top_votos_positivos")
+     */
+    public function TopPositivosAction(Request $request)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $publiRepositorio = $m->getRepository('AppBundle:Publicacion');
+        $comenRepositorio = $m->getRepository('AppBundle:Comentario');
+        $usuRepositorio = $m->getRepository('UserBundle:User');
+        $publicaciones = $publiRepositorio->topVotosPositivos();
+
+        $paginator = $this->get('knp_paginator');
+
+        $publicaciones = $paginator->paginate(
+            $publicaciones,
+            $request->query->getInt('page', 1),
+            Publicacion::PAGINATION_ITEMS,
+            [
+                'wrap-queries' => true,
+            ]
+        );
+
+        return $this->render(':votos:votosPositivos.html.twig', ['publicaciones' => $publicaciones
+       ]);
+    }
+
+    /**
+     * @Route("/top-huevon", name="app_top_votos_negativos")
+     */
+    public function TopNegaivosAction(Request $request)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $publiRepositorio = $m->getRepository('AppBundle:Publicacion');
+        $comenRepositorio = $m->getRepository('AppBundle:Comentario');
+        $usuRepositorio = $m->getRepository('UserBundle:User');
+        $publicaciones = $publiRepositorio->topVotosNegativos();
+
+        $paginator = $this->get('knp_paginator');
+
+        $publicaciones = $paginator->paginate(
+            $publicaciones,
+            $request->query->getInt('page', 1),
+            Publicacion::PAGINATION_ITEMS,
+            [
+                'wrap-queries' => true,
+            ]
+        );
+
+        return $this->render(':votos:votosPositivos.html.twig', ['publicaciones' => $publicaciones
+        ]);
+    }
+
+
     
 }

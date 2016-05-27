@@ -1,0 +1,19 @@
+
+{% extends '::base.html.twig' %}
+
+{% block headTitle %}{{ titulo }}{% endblock %}
+
+{% block body %}
+    <div class="contenedor-publicacion" >
+        {% for publicacion in publicaciones %}
+            <span id="{{ publicacion.id }}">
+        {% include ':publicacion:publicacion_contenido.html.twig' %}
+        </span>
+        {% endfor %}
+    </div>
+    {% if not doPagination is defined %}
+        <div class="navigation ">
+            {{ knp_pagination_render(publicaciones) }}
+        </div>
+    {% endif %}
+{% endblock %}
