@@ -300,3 +300,29 @@ a:hover{
     width: 281px;
     margin-top: 15px;
 }
+
+
+@media (min-width: 0px ) and (max-width: 990px){
+    .top-leon-huevon{
+        display: none;
+    }
+
+    .top-leon{
+        display: none;
+    }
+
+    .top-huevon{
+        display: none;
+    }
+}
+
+@media (min-width: 990px) and (max-width: 1199px) {
+    .top-ultimos{
+        width: 140px;
+    }
+
+    .top-leon-huevon{
+        margin-bottom: 50px;
+    }
+    
+}
