@@ -254,7 +254,7 @@ class PublicacionController extends Controller
             ]
         );
 
-        return $this->render(':votos:votosPositivos.html.twig', ['publicaciones' => $publicaciones
+        return $this->render(':votos:votosTop.html.twig', ['publicaciones' => $publicaciones
        ]);
     }
 
@@ -280,7 +280,7 @@ class PublicacionController extends Controller
             ]
         );
 
-        return $this->render(':votos:votosPositivos.html.twig', ['publicaciones' => $publicaciones
+        return $this->render(':votos:votosTop.html.twig', ['publicaciones' => $publicaciones
         ]);
     }
 
