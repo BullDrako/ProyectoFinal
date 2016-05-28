@@ -18,12 +18,15 @@ class PublicacionController extends Controller
     /**
      * @Route("/borrar/{id}.html", name="app_admin_publicacion_borrar")
      */
-    public function borrarPublicacion(Publicacion $publicacion)
+    public function borrarPublicacion(Publicacion $publicacion, Request $request)
     {
         $m = $this->getDoctrine()->getManager();
         $m->remove($publicacion);
         $m->flush();
+   
         return $this->redirectToRoute('app_publicacion_publicaciones');
+
+
     }
 
     /**
@@ -79,6 +82,32 @@ class PublicacionController extends Controller
         return $this->render(':admin/votos:votosTopAdmin.html.twig', [
             'publicaciones' => $publicaciones,
             'titulo' => 'Top Huevón'
+        ]);
+    }
+
+    /**
+     * @Route("/publicaciones-sin-categoria", name="app_admin_publicaciones_sin_categoria")
+     */
+    public function publicacionesSinCategoriaACtion(Request $request)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $pRepositorio = $m->getRepository('AppBundle:Publicacion');
+        $publicaciones = $pRepositorio->publicacionesSinCategoria();
+
+
+        $paginator = $this->get('knp_paginator');
+
+        $publicaciones = $paginator->paginate(
+            $publicaciones,
+            $request->query->getInt('page', 1),
+            Publicacion::PAGINATION_ITEMS,
+            [
+                'wrap-queries' => true,
+            ]
+        );
+
+        return $this->render(':admin/publicacion:publicaciones-sin-categoria.html.twig', [
+            'publicaciones' => $publicaciones,
         ]);
     }
 

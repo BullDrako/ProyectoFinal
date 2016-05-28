@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class PublicacionTypeLoH extends AbstractType
 {
@@ -16,7 +16,14 @@ class PublicacionTypeLoH extends AbstractType
     {
         $builder
             ->add('contenido', TextType::class, array('data'=>' ¿León o Huevón?'))
-            ->add('categorias', null, ['expanded' => true])
+            //->add('categorias', null, ['expanded' => true])
+            ->add('categorias', EntityType::class, array(
+                'class' => 'AppBundle:Categoria',
+                'choice_label' => 'nombre',
+                'multiple' =>  true,
+                'expanded' => true,
+                'required'=>true,
+            ))
             //->add('nuevasCategorias')
             //->add('image', ImageType::class)
 

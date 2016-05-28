@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Logro
 {
-    const PAGINATION_ITEMS = 4;
+    const PAGINATION_ITEMS = 10;
     
     /**
      * @var int

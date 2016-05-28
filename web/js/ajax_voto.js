@@ -48,7 +48,8 @@ $(document).ready(function()
         $(this).css("color", "#FF0000")
        
     });
-
+    
+   
 
 
     $(".votos .votar").click(function ()

@@ -1,0 +1,27 @@
+{% extends ':admin:plantilla.html.twig' %}
+
+{% block headTitle %}<span class="color-letra">Publicaciones sin categoria</span>{% endblock %}
+
+{% block body %}
+    {% if publicaciones %}
+        <div class="contenedor-publicacion" >
+            {% for publicacion in publicaciones %}
+                <span id="{{ publicacion.id }}">
+        {% include ':publicacion:publicacion_contenido.html.twig' %}
+        </span>
+            {% endfor %}
+        </div>
+    {% else %}
+
+        <div class="col-md-12 alert-success" style="padding: 10px;">
+            <p>No hay publicaciones sin categoria.</p>
+        </div>
+
+    {% endif %}
+
+    {% if not doPagination is defined %}
+        <div class="navigation ">
+            {{ knp_pagination_render(publicaciones) }}
+        </div>
+    {% endif %}
+{% endblock %}

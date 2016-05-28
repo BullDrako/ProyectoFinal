@@ -26,4 +26,10 @@
             </div>
 
     {% endif %}
+
+    {% if not doPagination is defined %}
+        <div class="navigation ">
+            {{ knp_pagination_render(categorias) }}
+        </div>
+    {% endif %}
 {% endblock %}

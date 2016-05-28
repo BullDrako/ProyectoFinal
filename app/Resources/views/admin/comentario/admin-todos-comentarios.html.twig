@@ -1,7 +1,7 @@
 {% extends ':admin:plantilla.html.twig' %}
 
 
-{% block headTitle %}<span class="color-letra">Todos los Comentarios</span>{% endblock %}
+{% block headTitle %}<span class="color-letra">{{ titulo }}</span>{% endblock %}
 
 {% block body %}
     {% for comentario in comentarios %}
@@ -18,4 +18,10 @@
             <div style="font-size: medium">{{ comentario }}</div></br>
         </div>
         {% endfor %}
+
+    {% if not doPagination is defined %}
+        <div class="navigation ">
+            {{ knp_pagination_render(comentarios) }}
+        </div>
+    {% endif %}
 {% endblock %}

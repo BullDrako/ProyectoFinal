@@ -70,26 +70,6 @@ class PublicacionController extends Controller
 
     public function NuevaPublicacionAction(Request $request)
     {
-        /*$publicacion = new Publicacion();
-        $form = $this->createForm(PublicacionType::class, $publicacion);
-        if ($request->getMethod() == Request::METHOD_POST) {
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-                $m = $this->getDoctrine()->getManager();
-                $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
-                $categoriaRepositorio->añadirCategoriasSiSonNuevas($publicacion);
-                $publicacion->setAutor($this->getUser());
-                $m->persist($publicacion);
-                $m->flush();
-                return $this->redirectToRoute('app_publicacion_mostrar', ['id' => $publicacion->getId()]);
-            }
-        }
-        return $this->render(':publicacion:form.html.twig', [
-            'form'  => $form->createView(),
-            'titulo' => 'Nueva Publicacion',
-        ]);*/
-
-
         $publicacion = new Publicacion();
         $form = $this->createForm(PublicacionTypeLoH::class, $publicacion);
         if ($request->getMethod() == Request::METHOD_POST) {
@@ -127,7 +107,6 @@ class PublicacionController extends Controller
             if ($form->isValid()) {
                 $m = $this->getDoctrine()->getManager();
                 $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
-                //$categoriaRepositorio->añadirCategoriasSiSonNuevas($publicacion);
                 $m->flush();
                 return $this->redirectToRoute('app_publicacion_mostrar', ['id' => $publicacion->getId()]);
             }
@@ -192,18 +171,6 @@ class PublicacionController extends Controller
      */
     public function votarPositivoAction($id, Request $request)
     {
-        /* if (!$request->isXmlHttpRequest()) {
-             $m = $this->getDoctrine()->getManager();
-             $repositorio = $m->getRepository('AppBundle:Publicacion');
-             $publicacion = $repositorio->find($id);
-
-             $publicacion->setVotosPositivos();
-             $m->flush();
-
-             //return $this->redirect('/#'.$id);
-             return new JsonResponse(array('data' => 'You can access this only using Ajax!'), 400);
-
-         }*/
         $m = $this->getDoctrine()->getManager();
         $repositorio = $m->getRepository('AppBundle:Publicacion');
         $publicacion = $repositorio->find($id);
@@ -283,6 +250,8 @@ class PublicacionController extends Controller
         return $this->render(':votos:votosTop.html.twig', ['publicaciones' => $publicaciones
         ]);
     }
+
+   
 
 
     

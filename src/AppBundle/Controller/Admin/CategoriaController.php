@@ -32,7 +32,7 @@ class CategoriaController extends Controller
         $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
         $categoriasQuery = $categoriaRepositorio->busquedaBuscarTodasLascategorias();
         $categorias = $this->get('knp_paginator')->paginate($categoriasQuery, $request->query->getInt('page', 1), Categoria::PAGINATION_ITEMS);
-        return $this->render(':admin/index:categorias-para-admin.html.twig', [
+        return $this->render(':admin/categoria:categorias-para-admin.html.twig', [
             'categorias' => $categorias,
         ]);
     }
@@ -46,49 +46,6 @@ class CategoriaController extends Controller
 
     public function categoriaCrearAdminAction(Request $request)
     {
-
-       /* $categoria = new Categoria();
-        $form = $this->createForm(CategoriaType::class, $categoria);
-
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            $m = $this->getDoctrine()->getManager();
-            $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
-            $categoriaRepositorio->añadirCategoriasSiSonNuevasAdmin($categoria);
-            $m->persist($categoria);
-            $m->flush();
-            //return $this->redirectToRoute('app_categorias_categorias');
-            return $this->redirect('categorias-admin');
-        }
-        return $this->render(':admin/categoria:form-categoria.html.twig', [
-            'form'      => $form->createView(),
-            'title' => 'Nueva Categoria',
-        ]);*/
-
-        /*$publicacion = new Publicacion();
-        $form = $this->createForm(CategoriaType2::class, $publicacion);
-        if ($request->getMethod() == Request::METHOD_POST) {
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-                $m = $this->getDoctrine()->getManager();
-                $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
-                $categoriaRepositorio->añadirCategoriasSiSonNuevas($publicacion);
-                $publicacion->setAutor($this->getUser());
-                $m->persist($publicacion);
-                $m->flush();
-                $m = $this->getDoctrine()->getManager();
-                $m->remove($publicacion);
-                $m->flush();
-                return $this->redirectToRoute('app_admin_categorias');
-
-            }
-        }
-        return $this->render(':admin/categoria:form-categoria.html.twig', [
-            'form'  => $form->createView(),
-            'title' => 'Nueva Categoria',
-        ]);*/
-
-
         $categoria = new Categoria();
         $form = $this->createForm(CategoriaType::class, $categoria);
 
@@ -98,8 +55,7 @@ class CategoriaController extends Controller
                 $m = $this->getDoctrine()->getManager();
                 $m->persist($categoria);
                 $m->flush();
-                //return $this->redirectToRoute('app_categorias_categorias');
-                //return $this->redirect('categorias-admin');
+
                 return $this->redirectToRoute('app_admin_categorias');
             }
         }
@@ -115,7 +71,7 @@ class CategoriaController extends Controller
      */
     public function editarCategoriaAdmin(Request $request, Categoria $categoria)
     {
-        $form = $this->createForm(CategoriaType3::class, $categoria, [
+        $form = $this->createForm(CategoriaType::class, $categoria, [
             'submit_label'  => 'Editar categoria'
         ]);
 
@@ -124,8 +80,6 @@ class CategoriaController extends Controller
             if ($form->isValid()) {
                 $m = $this->getDoctrine()->getManager();
                 $m->getRepository('AppBundle:Categoria');
-                //$categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
-                //$categoriaRepositorio->añadirCategoriasSiSonNuevas($publicacion);
                 $m->flush();
                 return $this->redirectToRoute('app_admin_categorias');
             }
@@ -149,9 +103,7 @@ class CategoriaController extends Controller
         $m->remove($categoria);
         $m->flush();
 
-        //return $this->redirectToRoute('app_admin_categoria_no_usada');
         return $this->redirectToRoute('app_admin_categorias');
-        //return $this->render(':admin/index:categorias-para-admin.html.twig');
     }
 
 
@@ -159,33 +111,27 @@ class CategoriaController extends Controller
      * @Route("/no-usadas", name="app_admin_categoria_no_usada")
      */
 
-    public function mostrarCategoriasNoUsadasAction()
+    public function mostrarCategoriasNoUsadasAction(Request $request)
     {
         $m = $this->getDoctrine()->getManager();
         $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
         $categorias = $categoriaRepositorio->todasCategoriasNoUsadas();
+
+        $paginator = $this->get('knp_paginator');
+
+        $categorias = $paginator->paginate(
+            $categorias,
+            $request->query->getInt('page', 1),
+            Categoria::PAGINATION_ITEMS,
+            [
+                'wrap-queries' => true,
+            ]
+        );
 
         return $this->render(':admin/categoria:categorias-no-usadas.html.twig', [
             'categorias' => $categorias,
         ]);
     }
-
-
-    /**
-     * @Route("/borrar-todas-categorias-no-usadas", name="app_admin_categoria_borrarTodascategoriasNoUsadas")
-     */
-    /*public function borrarTodasCategoriasNoUsadasAction()
-    {
-        $m = $this->getDoctrine()->getManager();
-        $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
-        $categorias = $categoriaRepositorio->todasCategoriasNoUsadas();
-        foreach ($categorias as $categoria) {
-            $m->remove($categoria);
-        }
-        $m->flush();
-        return $this->redirectToRoute('app_admin_categoria_no_usada');
-    }*/
-
 
     /**
      * @Route("/borrar-cate/{id}", name="app_admin_categoria1_borrar")
@@ -195,9 +141,8 @@ class CategoriaController extends Controller
         $m = $this->getDoctrine()->getManager();
         $m->remove($categoria);
         $m->flush();
-        //return $this->redirectToRoute('app_admin_categoria_no_usada');
-        //return $this->render('admin/index/categorias-para-admin.html.twig');
-        return $this->redirect('/admin/categorias/categorias-admin');
+
+        return $this->redirectToRoute('app_admin_categorias');
 
     }
 

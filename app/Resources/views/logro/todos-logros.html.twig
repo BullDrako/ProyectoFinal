@@ -1,10 +1,10 @@
-{% extends '::base.html.twig' %}
+{% extends ':admin:plantilla.html.twig' %}
 
-{% block headTitle %}<span class="color-letra">Logros</span>{% endblock %}
+{% block headTitle %}<span class="color-letra">Todos los Logros</span>{% endblock %}
 
 {% block body %}
-    <h1 class="color-letra">Todos Logros</h1>
-    <hr>
+
+
 
     {% for logro in logros %}
         <h3 class="color-letra">{{ logro.nombre }}</h3>
@@ -12,9 +12,4 @@
     {% endfor %}
 
 
-    {% if app.user.publicaciones.count >= 1 %}
-        {% if logros %}
-        {{ logros.id }}
-        {% endif %}
-        {% endif %}
 {% endblock %}

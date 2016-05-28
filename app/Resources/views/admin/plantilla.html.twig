@@ -48,6 +48,9 @@
 
                 <li {% if app.request.get('_route') == 'app_admin_index_index' %}class="active"{% endif %}>
                     <a class="hover-admin" href="{{ path('app_admin_index_index') }}">Publicaciones</a></li>
+                <li {% if app.request.get('_route') == 'app_admin_publicaciones_sin_categoria' %}class="active"{% endif %}>
+                    <a class="hover-admin" href="{{ path('app_admin_publicaciones_sin_categoria') }}">Sin categoria</a></li>
+
                 <li {% if app.request.get('_route') == 'app_admin_categorias' %}class="active"{% endif %} >
                     <a class="hover-admin" href="{{ path('app_admin_categorias') }}">Categorias</a></li>
                 <li><a class="hover-admin" href="{{ path('app_admin_crear_categoria') }}">Nueva Categoria</a></li>
@@ -89,6 +92,9 @@
             <ul class="nav nav-sidebar">
                 <li {% if app.request.get('_route') == 'app_admin_index_index' %}class="active"{% endif %}>
                 <a class="hover-admin" href="{{ path('app_admin_index_index') }}">Publicaciones</a></li>
+
+                <li {% if app.request.get('_route') == 'app_admin_publicaciones_sin_categoria' %}class="active"{% endif %}>
+                <a class="hover-admin" href="{{ path('app_admin_publicaciones_sin_categoria') }}">Publicaciones sin categoria</a></li>
                 {#<a href="{{ path('app_publicacionesQueTieneCategoria') }}">Publicaciones por categoria</a></li>#}
             </ul>
             <ul class="nav nav-sidebar">
@@ -124,6 +130,12 @@
                 </li>
                 <li {% if app.request.get('_route') == 'app_admin_top_votos_negativos' %}class="active"{% endif %}>
                     <a class="hover-admin" href="{{ path('app_admin_top_votos_negativos') }}">Top huevón</a>
+                </li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+                <li {% if app.request.get('_route') == 'app_admin_todos_logros' %}class="active"{% endif %}>
+                    <a class="hover-admin" href="{{ path('app_admin_todos_logros') }}">Listado de todos los logros</a>
                 </li>
             </ul>
 

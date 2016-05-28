@@ -110,5 +110,17 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->topVotosNegativos()->execute();
     }
+    
+    
+    public function publicacionesSinCategoria(){
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.categorias', 'pu')
+            ->andWhere('p.categorias is EMPTY' )
+            ->getQuery()
+            ->execute()
+            ;
+            
+    }
+    
 
 }

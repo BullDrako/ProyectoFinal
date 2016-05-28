@@ -47,6 +47,7 @@ class Publicacion
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Categoria", cascade={"persist"}, inversedBy="publicaciones")
+     *
      */
     private $categorias;
 

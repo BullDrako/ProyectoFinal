@@ -328,5 +328,6 @@ a:hover{
 }
 
 .navbar-fixed-top .navbar-collapse{
-    max-height: 401px;
+    max-height: 433px; /*401*/
 }
+
