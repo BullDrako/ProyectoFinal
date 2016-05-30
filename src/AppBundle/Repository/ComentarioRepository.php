@@ -18,7 +18,7 @@ class ComentarioRepository extends EntityRepository
             ->leftJoin('c.publicacion', 'publicacion')
             ->andWhere('publicacion.id = :id')
             ->setParameter('id', $id)
-            ->addOrderBy('c.createdAt', 'DESC')
+            ->addOrderBy('c.createdAt', 'ASC')
             ->getQuery()
             ;
     }
