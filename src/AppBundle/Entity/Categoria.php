@@ -38,8 +38,6 @@ class Categoria
 
     private $publicaciones;
 
-    private $nuevasCategorias;
-
     /**
      * @var \DateTime
      *
@@ -156,27 +154,7 @@ class Categoria
 
         return $this;
     }
-
-    /**
-     * @return string
-     */
-
-    public function getNuevasCategorias()
-    {
-        return $this->nuevasCategorias;
-    }
-
-    /**
-     * @param $nuevasCategorias
-     * @return $this
-     */
-    public function setNuevasCategorias($nuevasCategorias)
-    {
-        $this->nuevasCategorias = $nuevasCategorias;
-
-        return $this;
-    }
-
+    
     /**
      * @return \DateTime
      */
@@ -184,7 +162,6 @@ class Categoria
     {
         return $this->createdAt;
     }
-
     
     
 }

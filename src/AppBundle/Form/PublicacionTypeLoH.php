@@ -16,7 +16,6 @@ class PublicacionTypeLoH extends AbstractType
     {
         $builder
             ->add('contenido', TextType::class, array('data'=>' ¿León o Huevón?'))
-            //->add('categorias', null, ['expanded' => true])
             ->add('categorias', EntityType::class, array(
                 'class' => 'AppBundle:Categoria',
                 'choice_label' => 'nombre',
@@ -24,8 +23,7 @@ class PublicacionTypeLoH extends AbstractType
                 'expanded' => true,
                 'required'=>true,
             ))
-            //->add('nuevasCategorias')
-            //->add('image', ImageType::class)
+          
 
             ->add('publiFile', VichImageType::class,[
                 'required'      => false,

@@ -50,13 +50,7 @@ class Publicacion
      *
      */
     private $categorias;
-
-    /**
-     * @var string
-     */
-    private $nuevasCategorias;
-
-
+    
     /**
      * @var \DateTime
      *
@@ -337,26 +331,7 @@ class Publicacion
     {
         return $this->contenido;
     }
-
-    /**
-     * @return string
-     */
-
-    public function getNuevasCategorias()
-    {
-        return $this->nuevasCategorias;
-    }
-
-    /**
-     * @param $nuevasCategorias
-     * @return $this
-     */
-    public function setNuevasCategorias($nuevasCategorias)
-    {
-        $this->nuevasCategorias = $nuevasCategorias;
-
-        return $this;
-    }
+    
 
     /**
      * @return mixed

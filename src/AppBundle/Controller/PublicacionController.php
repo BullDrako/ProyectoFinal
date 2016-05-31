@@ -21,7 +21,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Edgar\UserBundle\Entity\User;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class PublicacionController extends Controller

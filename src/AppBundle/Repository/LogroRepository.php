@@ -14,7 +14,7 @@ class LogroRepository extends \Doctrine\ORM\EntityRepository
     public function buscarLogrosDeUnUsuario($id)
     {
         return $this->createQueryBuilder('logro')
-            //->select('logro.nombre', 'logro.descripcion', 'logro.createdAt')
+            
             ->leftJoin('logro.usuario', 'usuario')
             ->andWhere('usuario.id = :id')
             ->setParameter('id', $id)
@@ -31,13 +31,6 @@ class LogroRepository extends \Doctrine\ORM\EntityRepository
     
     public function todosLogros()
     {
-        /*return $this->createQueryBuilder('logro')
-            ->select('logro.nombre', 'logro.descripcion')
-            ->from('AppBundle:Logro', 'logro')
-            ->getQuery()
-            ->execute()
-            ;*/
-
         return $this->createQueryBuilder('logro')
             ->addOrderBy('logro.id', 'ASC')
             ->leftJoin('logro.usuario', 'usuario')

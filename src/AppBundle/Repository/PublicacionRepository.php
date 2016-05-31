@@ -30,7 +30,7 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
     }
 
     public function buscarPublicacionesQueTieneCategoriaId($nombre)
-    {//buscarPublicacionesQueTienenCategoriaId
+    {
         $query = $this->createQueryBuilder('p')
             ->leftJoin('p.categorias', 'categorias')
             ->addOrderBy('p.createdAt', 'DESC')

@@ -100,18 +100,6 @@ class ComentarioController extends Controller
      */
     public function votarPositivoAction($id, Request $request)
     {
-        /* if (!$request->isXmlHttpRequest()) {
-             $m = $this->getDoctrine()->getManager();
-             $repositorio = $m->getRepository('AppBundle:Publicacion');
-             $publicacion = $repositorio->find($id);
- 
-             $publicacion->setVotosPositivos();
-             $m->flush();
- 
-             //return $this->redirect('/#'.$id);
-             return new JsonResponse(array('data' => 'You can access this only using Ajax!'), 400);
- 
-         }*/
         $m = $this->getDoctrine()->getManager();
         $repositorio = $m->getRepository('AppBundle:Comentario');
         $comentario = $repositorio->find($id);
@@ -137,13 +125,7 @@ class ComentarioController extends Controller
 
         return $this->redirect($routeName.$id);
 
-       // return $this->redirectToRoute($routeName);
-        
-        
-        
-        
-
-
+  
     }
 
 }
