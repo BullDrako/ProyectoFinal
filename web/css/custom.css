@@ -332,7 +332,11 @@ a:hover{
 
 @media (min-width: 768px){
     .navbar-form .form-control{
-        width: 81px;
+        width: 180px;
+
+    }
+    .buscar-admin{
+        width: 96px!important;
     }
     .sidebar{
         top: 77px;
@@ -342,3 +346,5 @@ a:hover{
 .alerta{
     padding: 10px;
 }
+
+
