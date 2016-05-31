@@ -11,25 +11,25 @@
             </thead>
             {% for categoria in categorias %}
                 <tr>
-                    <td class="color-letra">{{ categoria.nombre }}</td>
-                    <td><a class="btn btn-danger" href="{{ path('app_admin_categoria_borrar', {'id': categoria.id}) }}">borrar</a></td>
+                    <td class="color-letra">
+                        {{ categoria.nombre }}
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="{{ path('app_admin_categoria-no-usada_borrar', {'id': categoria.id}) }}">borrar</a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
         <div>
-            {#<a class="btn btn-danger" href="{{ path('app_admin_categoria_borrarTodascategoriasNoUsadas') }}">Borrar todas las categorias no utilizadas</a>#}
+
         </div>
     {% else %}
 
-            <div class="col-md-12 alert-success" style="padding: 10px;">
+
+            <div class="col-md-12 alert-success alerta">
                 <p>No hay categorias no utilizadas</p>
             </div>
 
     {% endif %}
 
-    {% if not doPagination is defined %}
-        <div class="navigation ">
-            {{ knp_pagination_render(categorias) }}
-        </div>
-    {% endif %}
 {% endblock %}

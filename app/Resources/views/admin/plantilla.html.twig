@@ -11,14 +11,11 @@
 
     <title>Panel del administrador</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="{{ asset('css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
@@ -44,7 +41,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                {#<li><a href="/">Inicio</a></li>#}
+
 
                 <li {% if app.request.get('_route') == 'app_admin_index_index' %}class="active"{% endif %}>
                     <a class="hover-admin" href="{{ path('app_admin_index_index') }}">Publicaciones</a></li>
@@ -57,9 +54,7 @@
                 <li {% if app.request.get('_route') == 'app_admin_categoria_no_usada' %}class="active"{% endif %}>
                     <a class="hover-admin" href="{{ path('app_admin_categoria_no_usada') }}">Categorias no usadas</a>
                 </li>
-               {# <li {% if app.request.get('_route') == 'app_admin_categoria_borrarTodascategoriasNoUsadas' %}class="active"{% endif %}>
-                    <a href="{{ path('app_admin_categoria_borrarTodascategoriasNoUsadas') }}">Borrar todas las categorias no utilizadas</a>
-                </li>#}
+
                 <li {% if app.request.get('_route') == 'app_admin_todos_comentarios' %}class="active"{% endif %}>
                     <a class="hover-admin" href="{{ path('app_admin_todos_comentarios') }}">Comentarios</a>
                 </li>
@@ -73,12 +68,12 @@
                 <li {% if app.request.get('_route') == 'app_admin_top_votos_negativos' %}class="active"{% endif %}>
                     <a class="hover-admin" href="{{ path('app_admin_top_votos_negativos') }}">Top huevón</a>
                 </li>
+                <li {% if app.request.get('_route') == 'app_admin_todos_logros' %}class="active"{% endif %}>
+                    <a class="hover-admin" href="{{ path('app_admin_todos_logros') }}">Todos los logros</a>
+                </li>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Buscar...">
                 </form>
-
-
-
 
             </ul>
 
@@ -95,7 +90,6 @@
 
                 <li {% if app.request.get('_route') == 'app_admin_publicaciones_sin_categoria' %}class="active"{% endif %}>
                 <a class="hover-admin" href="{{ path('app_admin_publicaciones_sin_categoria') }}">Publicaciones sin categoria</a></li>
-                {#<a href="{{ path('app_publicacionesQueTieneCategoria') }}">Publicaciones por categoria</a></li>#}
             </ul>
             <ul class="nav nav-sidebar">
 
@@ -105,9 +99,7 @@
                 <li {% if app.request.get('_route') == 'app_admin_categoria_no_usada' %}class="active"{% endif %}>
                     <a class="hover-admin" href="{{ path('app_admin_categoria_no_usada') }}">Categorias no usadas</a>
                 </li>
-                {#<li {% if app.request.get('_route') == 'app_admin_categoria_borrarTodascategoriasNoUsadas' %}class="active"{% endif %}>
-                    <a href="{{ path('app_admin_categoria_borrarTodascategoriasNoUsadas') }}">Borrar todas las categorias no utilizadas</a>
-                </li>#}
+
             </ul>
 
             <ul class="nav nav-sidebar">
@@ -142,19 +134,10 @@
 
 
             {#<iframe src="http://www.minijuegostop.com.mx/showFlash.php?id=17791" width="175" height="400" frameborder="0" ></iframe>#}
-              {# <li><a href="#">Nuevo comentario</a></li>
-               <li><a href="#">Actualizar comentario</a></li>
-               <li><a href="#">Borrar comentario</a></li>
-           </ul>
-           <ul class="nav nav-sidebar">
-               <li><a href="">Usuarios</a></li>
-               <li><a href="">Nuevo Usuario</a></li>
-               <li><a href="">Actualizar usuario</a></li>
-               <li><a href="">Borrar usuario</a></li>
-           </ul>#}
+
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">{% block headTitle %}{% endblock %}</h1>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 contenido">
+            <h1 class="cabecera">{% block headTitle %}{% endblock %}</h1>
             {% block body %}{% endblock %}
         </div>
     </div>
@@ -165,7 +148,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 
 <script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/ajax_voto.js') }}"></script>
+<script src="{{ asset('js/funciones.js') }}"></script>
 <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.min.js') }}"><\/script>')</script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

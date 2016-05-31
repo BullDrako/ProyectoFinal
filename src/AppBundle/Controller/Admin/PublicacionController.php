@@ -95,7 +95,7 @@ class PublicacionController extends Controller
         $publicaciones = $pRepositorio->publicacionesSinCategoria();
 
 
-        $paginator = $this->get('knp_paginator');
+       /* $paginator = $this->get('knp_paginator');
 
         $publicaciones = $paginator->paginate(
             $publicaciones,
@@ -105,7 +105,7 @@ class PublicacionController extends Controller
                 'wrap-queries' => true,
             ]
         );
-
+*/
         return $this->render(':admin/publicacion:publicaciones-sin-categoria.html.twig', [
             'publicaciones' => $publicaciones,
         ]);

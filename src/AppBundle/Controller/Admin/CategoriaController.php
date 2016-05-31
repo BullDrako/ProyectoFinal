@@ -117,7 +117,7 @@ class CategoriaController extends Controller
         $categoriaRepositorio = $m->getRepository('AppBundle:Categoria');
         $categorias = $categoriaRepositorio->todasCategoriasNoUsadas();
 
-        $paginator = $this->get('knp_paginator');
+        /*$paginator = $this->get('knp_paginator');
 
         $categorias = $paginator->paginate(
             $categorias,
@@ -126,23 +126,26 @@ class CategoriaController extends Controller
             [
                 'wrap-queries' => true,
             ]
-        );
+        );*/
 
         return $this->render(':admin/categoria:categorias-no-usadas.html.twig', [
             'categorias' => $categorias,
         ]);
     }
 
+   
+
+
     /**
-     * @Route("/borrar-cate/{id}", name="app_admin_categoria1_borrar")
+     * @Route("/borrar-categoria-no-usada/{id}", name="app_admin_categoria-no-usada_borrar")
      */
-    public function borrarCategoria1Action(Categoria $categoria)
+    public function borrarCategoriaNoUsadaAction(Categoria $categoria)
     {
         $m = $this->getDoctrine()->getManager();
         $m->remove($categoria);
         $m->flush();
 
-        return $this->redirectToRoute('app_admin_categorias');
+        return $this->redirectToRoute('app_admin_categoria_no_usada');
 
     }
 

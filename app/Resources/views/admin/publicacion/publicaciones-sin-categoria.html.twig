@@ -13,15 +13,11 @@
         </div>
     {% else %}
 
-        <div class="col-md-12 alert-success" style="padding: 10px;">
+        <div class="col-md-12 alert-success alerta">
             <p>No hay publicaciones sin categoria.</p>
         </div>
 
     {% endif %}
 
-    {% if not doPagination is defined %}
-        <div class="navigation ">
-            {{ knp_pagination_render(publicaciones) }}
-        </div>
-    {% endif %}
+
 {% endblock %}

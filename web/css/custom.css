@@ -10,7 +10,35 @@ body{
     margin-top:-9px;
 }
 
-.rounded-box {
+/*.rounded-box {
+    padding: 19px;
+    background-color: white;
+    border: 1px solid #DDD;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}*/
+
+.margin-bottom-xs {
+    margin-bottom: 5px;
+}
+
+/*.margin-bottom-sm {
+    margin-bottom: 10px;
+}*/
+
+/*.margin-bottom-md {
+    margin-bottom: 15px;
+}*/
+
+.separar-publicaciones {
+    margin-bottom: 30px;
+    /*position:relative;*/
+    /*z-index: -1;*/
+
+}
+
+.caja{
     padding: 19px;
     background-color: white;
     border: 1px solid #DDD;
@@ -19,20 +47,8 @@ body{
     border-radius: 4px;
 }
 
-.margin-bottom-xs {
-    margin-bottom: 5px;
-}
-.margin-bottom-sm {
-    margin-bottom: 10px;
-}
-.margin-bottom-md {
+.separar-comentarios{
     margin-bottom: 15px;
-}
-.margin-bottom-lg {
-    margin-bottom: 30px;
-    /*position:relative;*/
-    /*z-index: -1;*/
-
 }
 
 .comentarios-sidebar{
@@ -66,10 +82,6 @@ body{
         float:left!important;
     }
 
-    .categoriasPrincipal{
-       /* border: 1px dashed red;*/
-
-    }
 }
 
 .botonadmin{
@@ -87,16 +99,12 @@ body{
 }
 
 @media (min-width: 900px){
-    .margin-bottom-lg{
+    .separar-publicaciones{
         margin-top: 0px;
     }
 
 }
 
-.categoriasPrincipal{
-
-    /*border: 1px solid;*/
-}
 
 .contenedor-publicacion{
     margin-top: 22px;
@@ -135,13 +143,8 @@ body{
 
 .categoriasPrincipal-Individual{
     margin: 3px;
-    box-shadow:inset -2px -3px 8px #A29F7B, 2px 4px 8px red; /*altura anchura sombra #090909*/ /*2px 4px 35px 4px #FF0000!important*//*2px 4px 8px #FF0000!important*/
+    box-shadow:inset -2px -3px 8px #A29F7B, 2px 4px 8px red; /*altura anchura sombra #090909*/
 }
-
-/*
-box-shadow: inset -2px -3px 8px #A29F7B, 2px 4px 8px red
-
-*/
 
 .color-letra{
     color: white;
@@ -327,7 +330,15 @@ a:hover{
     
 }
 
-/*.navbar-fixed-top .navbar-collapse{
-    max-height: 433px; 401
-}*/
+@media (min-width: 768px){
+    .navbar-form .form-control{
+        width: 81px;
+    }
+    .sidebar{
+        top: 77px;
+    }
+}
 
+.alerta{
+    padding: 10px;
+}
