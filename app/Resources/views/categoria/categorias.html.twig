@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block headTitle %}Categorias{% endblock %}
+
+{% block body %}
+    <h1 class="color-letra">Categorias</h1>
+    <hr>
+    <div style="margin-left: 15px; margin-bottom: 10px">
+    {% for categoria in categorias %}
+        <h3 ><a class="btn btn-primary color-Categorias" href="{{ path('app_publicacionesQueTieneCategoria', {'nombre': categoria.nombre}) }}">{{ categoria.nombre }}</a></h3>
+    {% endfor %}
+    </div>
+
+    <div style="margin-left: 15px" class="navigation">
+        {{ knp_pagination_render(categorias) }}
+    </div>
+{% endblock %}

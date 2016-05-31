@@ -1,0 +1,75 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <div>
+                <span class="color-letra">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</span>
+                <span class="color-letra">|</span>
+                <a class="redondeado" href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <a class="redondeado" href="{{ path('app_publicacion_publicaciones') }}">Publicaciones</a>
+                        <span class="color-letra">- </span><a class="redondeado" href="{{ path('app_publicacion_nueva') }}">Nueva publicación</a>
+                    </li>
+                    <li><a class="redondeado" href="{{ path('app_categorias_categorias') }}">Categorias</a></li>
+                   <li><a class="redondeado" href="{{ path('app_logros_usuario_id', {'id': app.user.id}) }}">Mis logros</a></li>
+                   <li><a class="redondeado" href="{{ path('app_top_votos_positivos') }}">Top León</a></li>
+                   <li><a class="redondeado" href="{{ path('app_top_votos_negativos')}}">Top huevón</a></li>
+                </ul>
+            </div>
+
+
+
+        {% else %}
+            <span class="color-letra">Estás como usuario Anónimo</span> |
+            <a class="redondeado" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            <span class="color-letra">- </span>
+            <a class="redondeado" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+
+        {% endif %}
+
+    </div>
+
+
+
+
+    <div class="col-sm-6">
+    {% if is_granted('ROLE_ADMIN') %}
+        <div>
+            <span><a class="redondeado" href="{{ path('app_admin_index_index') }}">Ir al panel del administrador</a></span>
+        </div>
+
+
+    {% endif %}
+    </div>
+
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <div class="categoriasPrincipal col-sm-6 col-md-6 col-xs-12 col-lg-6 "> {#antes 5#}
+            {% for categoria in categorias %}
+                <a class="btn btn-default categoriasPrincipal-Individual " href="{{ path('app_publicacionesQueTieneCategoria', {'nombre': categoria.nombre}) }}"> {{ categoria.nombre }}</a>
+
+            {% endfor %}
+        </div>
+
+        {% endif %}
+
+    <br>
+    <div class="contenedor-publicacion" >
+        {% for publicacion in publicaciones %}
+            <span id="{{ publicacion.id }}">
+            {% include ':publicacion:publicacion_contenido.html.twig' %}
+            </span>
+        {% endfor %}
+
+        {% if not doPagination is defined %}
+            <div class="navigation ">
+                {{ knp_pagination_render(publicaciones) }}
+            </div>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

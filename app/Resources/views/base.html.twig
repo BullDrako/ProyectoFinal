@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/jumbotron.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+    {% endblock %}
+
+
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('app_index_index') }}"><img class="logo" src="{{ asset('images/logoProyect-largo-blanco.png') }}" />{#Symfony Project2#}</a><div class="texto-logo"></div>
+
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div>
+                <a class="btn btn-default botonadmin" href="{{ path('app_admin_index_index') }}">Panel del Admin</a>
+            </div>
+        {% endif %}
+        <div class="collapse navbar-collapse" id="myNavbar">
+
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <div class="navbar-form ">
+                    {{ render_esi(controller('UserBundle:HoritzontalLogin:horitzontalLogin', {'route': app.request.get('_route')})) }}
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<div class="container">
+    <ul>
+        {% for message in app.session.flashBag.get('messages') %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="container">
+    <div class="margin-bottom-md"></div>
+    <div class="row">
+        <div class="col-md-8">
+            {% block body %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+            {% block sidebar %}
+                <div class="container-fluid">
+                    <div class="row margin-bottom-md">
+                        <div class="col-md-12">
+                            <div class="top-leon-huevon">
+                                <a class="btn btn-warning top-leon" href="{{ path('app_top_votos_positivos') }}">Top León</a>
+                                <a class="btn btn-info top-huevon"  href="{{ path('app_top_votos_negativos') }}">Top huevón</a>
+                                <a class="btn btn-primary top-ultimos"  href="{{ path('app_index_index') }}">Ultimos</a>
+                            </div>
+                            {{ render(controller('AppBundle:Comentario:ultimosComentarios')) }}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <p class="text-right color-letra">&copy; 2016 Edgar Cabeza</p>
+
+       {# <iframe src="http://www.minijuegostop.com.mx/showFlash.php?id=17791" width="400" height="630" frameborder="0" ></iframe>#}
+    </footer>
+</div> <!-- /container -->
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/funciones.js') }}"></script>
+
+{% endblock %}
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{#<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>#}
+<script>window.jQuery || document.write('<script src="{{ asset('js/jquery.min.js') }}"><\/script>')</script>
+</body>
+</html>

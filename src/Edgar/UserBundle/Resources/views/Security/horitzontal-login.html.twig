@@ -1,0 +1,19 @@
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    <a class="btn btn-success botoneslogin " href="{{ path('fos_user_security_logout') }}">Cerrar sesión</a>
+    <a class="btn btn-danger botoneslogin botoneslogin2" href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a>
+
+{% elseif route != 'fos_user_security_login' and route != 'fos_user_registration_register' %}
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <div class="form-group">
+            <input class="form-control" placeholder="Usuario" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Contraseña" type="password" id="password" name="_password" required="required" />
+        </div>
+        <button type="submit" class="btn btn-success botoneslogin">Iniciar sesión</button>
+        <a class="btn btn-danger botoneslogin botoneslogin2" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+
+
+    </form>
+{% endif %}

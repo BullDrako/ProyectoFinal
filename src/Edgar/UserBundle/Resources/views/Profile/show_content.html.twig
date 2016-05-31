@@ -1,0 +1,12 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+    <p class="color-letra">{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+    <p class="color-letra">{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <p class="color-letra">Miembro desde: {{ user.createdAt|date("d/m/Y") }}</p>
+    <p class="color-letra">Última conexión: {{ user.lastLogin|date("d/m/Y") }} a las{{ user.lastLogin|date(" H:i:s") }}</p>
+    <p class="color-letra">Número de publicaciones: {{ app.user.publicaciones.count }} publicaciones </p>
+    <a class="btn btn-success" style="color: white!important;" href="{{ path('fos_user_profile_edit') }}">{{ 'profile.edit.submit'|trans }} </a>
+    <a class="btn btn-success" style="color: white!important;" href="{{ path('fos_user_change_password') }}">Cambiar contraseña </a>
+
+</div>

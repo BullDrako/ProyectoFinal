@@ -1,0 +1,9 @@
+
+<div class="caja separar-comentarios ">
+    <h3 style="text-align: center">Ultimos comentarios</h3>
+    <hr>
+{% for comentario in comentarios %}
+
+    {% include ':comentario:mostrar-comentario-sin-fecha.html.twig' with {'comentario': comentario} %}
+{% endfor %}
+ </div>

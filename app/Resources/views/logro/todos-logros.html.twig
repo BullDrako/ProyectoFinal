@@ -1,0 +1,15 @@
+{% extends ':admin:plantilla.html.twig' %}
+
+{% block headTitle %}<span class="color-letra">Todos los Logros</span>{% endblock %}
+
+{% block body %}
+
+
+
+    {% for logro in logros %}
+        <h3 class="color-letra">{{ logro.nombre }}</h3>
+        <span class="color-letra"> {{ logro.descripcion }}</span>
+    {% endfor %}
+
+
+{% endblock %}

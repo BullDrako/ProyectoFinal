@@ -1,0 +1,13 @@
+{% if comentarios is not empty %}
+    <hr>
+{% endif %}
+
+{% for comentario in comentarios %}
+    {% include ':comentario:mostrar-comentario.html.twig' with {'comentario': comentario} %}
+{% endfor %}
+
+{% if not doPagination is defined %}
+    <div class="navigation">
+        {{ knp_pagination_render(comentarios) }}
+    </div>
+{% endif %}

@@ -1,0 +1,20 @@
+{% extends ':admin:plantilla.html.twig' %}
+
+{% block headTitle %}<span class="color-letra">Panel del administrador</span>{% endblock %}
+
+{% block body %}
+    <div>
+        <p class="color-letra">Publicaciones de los usuarios</p>
+    </div>
+
+    {% for publicacion in publicaciones %}
+        {% include ':publicacion:publicacion_contenido.html.twig' %}
+
+    {% endfor %}
+
+    {% if not doPagination is defined %}
+        <div class="navigation">
+            {{ knp_pagination_render(publicaciones) }}
+        </div>
+    {% endif %}
+{% endblock %}

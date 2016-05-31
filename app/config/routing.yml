@@ -1,0 +1,55 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+
+app.index:
+    resource: "@AppBundle/Controller/IndexController.php"
+    type: annotation
+
+app.publicaciones:
+    resource: "@AppBundle/Controller/PublicacionController.php"
+    type: annotation
+
+app.categorias:
+    resource: "@AppBundle/Controller/CategoriaController.php"
+    type: annotation
+    prefix: /categorias
+
+app.admin.index:
+    resource: "@AppBundle/Controller/Admin/IndexController.php"
+    type: annotation
+    prefix: /admin
+
+app.admin.categorias:
+    resource: "@AppBundle/Controller/Admin/CategoriaController.php"
+    type: annotation
+    prefix: /admin/categorias
+
+app.admin.publicaciones:
+    resource: "@AppBundle/Controller/Admin/PublicacionController.php"
+    type: annotation
+    prefix: /admin/publicaciones
+
+app.admin.comentarios:
+    resource: "@AppBundle/Controller/Admin/ComentarioController.php"
+    type: annotation
+    prefix: /admin/comentarios
+
+app.comentarios:
+    resource: "@AppBundle/Controller/ComentarioController.php"
+    type: annotation
+    prefix: /comentarios
+
+app.logros:
+    resource: "@AppBundle/Controller/LogroController.php"
+    type: annotation
+
+app.admin.logros:
+    resource: "@AppBundle/Controller/Admin/LogroController.php"
+    type: annotation
+    prefix: /admin/logros
+
+app.admin.usuarios:
+    resource: "@UserBundle/Controller/HoritzontalLoginController.php"
+    type: annotation
+    prefix: /admin/usuarios
+
