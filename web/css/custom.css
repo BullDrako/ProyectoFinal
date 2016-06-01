@@ -335,7 +335,7 @@ a:hover{
         width: 81px;
     }*/
     .buscar-admin{
-        width: 81px;
+        width: 81px!important;
     }
     .sidebar{
         top: 77px;
