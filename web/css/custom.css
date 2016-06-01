@@ -342,3 +342,7 @@ a:hover{
 .alerta{
     padding: 10px;
 }
+
+.login-inicio{
+	width: auto!important;
+}
