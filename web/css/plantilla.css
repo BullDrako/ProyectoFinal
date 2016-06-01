@@ -58,3 +58,7 @@ body {
 .contenido .cabecera {
   margin-top: 0;
 }
+
+.buscar-admin{
+  width: 96px!important;
+}
