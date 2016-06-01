@@ -331,7 +331,10 @@ a:hover{
 }
 
 @media (min-width: 768px){
-    .navbar-form .form-control{
+    /*.navbar-form .form-control{
+        width: 81px;
+    }*/
+    .buscar-admin{
         width: 81px;
     }
     .sidebar{
@@ -343,6 +346,12 @@ a:hover{
     padding: 10px;
 }
 
-.login-inicio{
+/*.login-inicio{
 	width: auto!important;
-}
+}*/
+
+/*@media (min-width: 0) and (max-width: 766px){
+   .buscar-admin{
+       width: 380px;!important
+   }
+}*/
