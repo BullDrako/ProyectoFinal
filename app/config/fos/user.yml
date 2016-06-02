@@ -7,4 +7,4 @@ fos_user:
             enabled: true
     from_email:
         address:        pruebassymfony@gmail.com
-        sender_name:    prueba
+        sender_name:    leonohuevon.com
